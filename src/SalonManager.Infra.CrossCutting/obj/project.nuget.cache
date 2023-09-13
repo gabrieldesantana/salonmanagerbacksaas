@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "W0k6ABGx3nZySecsbUeW3wcOkIGHrN4B0RSSj3jTEOLZnKzuCe41tqKU12eskb/R87wLcGTDi8vb1D4kewQBjw==",
+  "dgSpecHash": "KTBzgvp1MbjuwcmNSRB+dRrlWl3gK5uUbvxWgr2nhjeS4EiKbr/hU5IT2sFLn94I2dYNKG1Ql6H7VyWC9rZs9w==",
   "success": true,
-  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\GerenciamentoSalao\\SalonManager.Infra.CrossCutting\\SalonManager.Infra.CrossCutting.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Infra.CrossCutting\\SalonManager.Infra.CrossCutting.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+  ],
   "logs": []
 }

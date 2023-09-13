@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W2UWxaEd3l5EL0nYCNvW8vAhykDStadrTAs7LPmKW61G70kSdxfQ1o+Yvgh1fDzlFP/F0LeS0PtGo0uGV4+N9Q==",
+  "dgSpecHash": "goiw2ZycNjWoFUX3fuSga8j4cLke+/5hNKiV+8vxmq3sDSDMnsGq2ClUoUCuUYlHezcfz8WFAoWibbY1+CTijg==",
   "success": true,
-  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\GerenciamentoSalao\\SalonManager.Application\\SalonManager.Application.csproj",
+  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Application\\SalonManager.Application.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\aspnetcore.healthchecks.sqlserver\\7.0.0\\aspnetcore.healthchecks.sqlserver.7.0.0.nupkg.sha512",
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\aspnetcore.healthchecks.ui\\7.0.2\\aspnetcore.healthchecks.ui.7.0.2.nupkg.sha512",
@@ -101,7 +101,11 @@
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\system.text.json\\7.0.3\\system.text.json.7.0.3.nupkg.sha512",
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\yamldotnet\\13.1.1\\yamldotnet.13.1.1.nupkg.sha512"
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\yamldotnet\\13.1.1\\yamldotnet.13.1.1.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.22\\microsoft.netcore.app.host.win-x64.6.0.22.nupkg.sha512"
   ],
   "logs": []
 }

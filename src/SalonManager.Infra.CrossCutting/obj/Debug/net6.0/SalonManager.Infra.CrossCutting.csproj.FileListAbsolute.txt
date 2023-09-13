@@ -1,0 +1,12 @@
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\bin\Debug\net6.0\SalonManager.Infra.CrossCutting.deps.json
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\bin\Debug\net6.0\SalonManager.Infra.CrossCutting.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\bin\Debug\net6.0\SalonManager.Infra.CrossCutting.pdb
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.csproj.AssemblyReference.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.GeneratedMSBuildEditorConfig.editorconfig
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.AssemblyInfoInputs.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.AssemblyInfo.cs
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.csproj.CoreCompileInputs.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\refint\SalonManager.Infra.CrossCutting.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\SalonManager.Infra.CrossCutting.pdb
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\obj\Debug\net6.0\ref\SalonManager.Infra.CrossCutting.dll

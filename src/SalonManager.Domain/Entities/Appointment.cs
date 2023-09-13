@@ -11,6 +11,12 @@ public class Appointment : BaseEntity
     public double Value { get; set; }
     public bool Done { get; set; }
 
+    public Appointment()
+    {
+        Done = false;
+        Value = 0;
+    }
+
     public void UpdateStatus()
     {
         this.Done = Done ? false : true; 

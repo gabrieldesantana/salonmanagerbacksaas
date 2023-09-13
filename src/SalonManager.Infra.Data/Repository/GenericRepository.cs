@@ -18,13 +18,13 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         _unitOfWork = unitOfWork;
     }
 
-    public async Task <List<T>> GetAllAsync()
+    public virtual async Task <List<T>> GetAllAsync()
     {
         return await _dbSet
             .AsNoTracking().Where(x => x.Actived == true).ToListAsync();
     }
 
-    public async Task<T> GetByIdAsync(int id)
+    public virtual async Task<T> GetByIdAsync(int id)
     {
         var entity = await _dbSet
         .FirstOrDefaultAsync(x => x.Id == id && x.Actived == true);

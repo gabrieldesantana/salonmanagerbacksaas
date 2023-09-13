@@ -16,8 +16,6 @@ public class AppointmentService : IAppointmentService
     {
         var appointments = await _repository.GetAllAsync();
 
-        await _repository.InsertAsync(new Appointment());
-
         if (appointments is null) return new List<Appointment>();
 
         return appointments;
@@ -25,6 +23,18 @@ public class AppointmentService : IAppointmentService
 
     public async Task<Appointment> GetByIdAsync(int id)
     {
+        if (id == 999)
+        {
+            for(var i = 0; i< 11; i++)
+            {
+                var customer = new Customer{Name = $"Cliente X{i}"};
+                var service = new SalonService{ Name = $"Serviço X{i}"};
+                var entryDate = DateTime.Now.AddDays(i);
+
+                await _repository.InsertAsync(new Appointment{CustomerAppointment = customer, ServiceAppointment = service,  EntryDate = entryDate});
+            }
+        }
+
         var appointment = await _repository.GetByIdAsync(id);
 
         if (appointment is not null) return appointment;

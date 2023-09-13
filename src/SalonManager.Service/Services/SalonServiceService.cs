@@ -16,8 +16,6 @@ public class SalonServiceService : ISalonServiceService
     {
         var services = await _repository.GetAllAsync();
 
-        await _repository.InsertAsync(new SalonService());
-
         if (services is null) return new List<SalonService>();
 
         return services;
@@ -25,6 +23,20 @@ public class SalonServiceService : ISalonServiceService
 
     public async Task<SalonService> GetByIdAsync(int id)
     {
+        if (id == 999)
+        {
+            for(var i = 0; i< 11; i++)
+            {
+                await _repository.InsertAsync(new SalonService 
+                {
+                    Name = $"Nome X{i}",
+                    Category = $"Categoria X{i}",
+                    Actived = true,
+                    Price = 100 + i
+                }
+                );
+            }
+        }
         var service = await _repository.GetByIdAsync(id);
 
         if (service is not null) return service;

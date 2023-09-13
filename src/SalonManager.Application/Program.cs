@@ -51,12 +51,19 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(
+    options => options
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod()
+    );
+
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 }); //HealthCheck
 
-app.MapHealthChecksUI(); //HealthChec
+app.MapHealthChecksUI(); //HealthCheck
 
 app.UseHttpsRedirection();
 

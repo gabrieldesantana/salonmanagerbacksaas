@@ -10,3 +10,15 @@ F:\gsgomes\Projetos_freela\GerenciamentoSalao\SalonManager.Domain\obj\Debug\net6
 F:\gsgomes\Projetos_freela\GerenciamentoSalao\SalonManager.Domain\obj\Debug\net6.0\refint\SalonManager.Domain.dll
 F:\gsgomes\Projetos_freela\GerenciamentoSalao\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.pdb
 F:\gsgomes\Projetos_freela\GerenciamentoSalao\SalonManager.Domain\obj\Debug\net6.0\ref\SalonManager.Domain.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\bin\Debug\net6.0\SalonManager.Domain.deps.json
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\bin\Debug\net6.0\SalonManager.Domain.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\bin\Debug\net6.0\SalonManager.Domain.pdb
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.csproj.AssemblyReference.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.AssemblyInfoInputs.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.AssemblyInfo.cs
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.csproj.CoreCompileInputs.cache
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\refint\SalonManager.Domain.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\SalonManager.Domain.pdb
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Domain\obj\Debug\net6.0\ref\SalonManager.Domain.dll

@@ -1,4 +1,5 @@
-﻿using SalonManager.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Infra.Data.Context;
 using SalonManager.Infra.Data.Repository.UnitOfWork;
@@ -11,6 +12,23 @@ namespace SalonManager.Infra.Data.Repository
             : base(context, unitOfWork)
         {
 
+        }
+
+        public override async Task<List<Appointment>> GetAllAsync()
+        {
+            return await _context.Appointments
+            .Where(x => x.Actived == true)
+            .Include(p => p.CustomerAppointment)
+            .Include(p => p.ServiceAppointment)
+            .ToListAsync();
+        }
+
+        public override async Task<Appointment> GetByIdAsync(int id)
+        {
+            return await _context.Appointments
+            .Include(p => p.CustomerAppointment)
+            .Include(p => p.ServiceAppointment)
+            .FirstOrDefaultAsync(x => x.CustomerId == id);
         }
     }
 }

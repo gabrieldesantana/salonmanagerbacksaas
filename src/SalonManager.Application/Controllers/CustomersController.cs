@@ -19,7 +19,7 @@ public class CustomersController : ControllerBase
 
     // GET api/[controller]
     [ProducesResponseType((200), Type = typeof(List<Customer>))]
-    [ProducesResponseType((404))]
+    [ProducesResponseType((400))]
     [HttpGet("")]
     public async Task<IActionResult> GetAllAsync() 
     {
@@ -39,6 +39,7 @@ public class CustomersController : ControllerBase
 
     // GET api/[controller]/{id}
     [ProducesResponseType((200), Type = typeof(Customer))]
+    [ProducesResponseType((400))]
     [ProducesResponseType((404))]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetByIdAsync(int id) 
@@ -64,7 +65,6 @@ public class CustomersController : ControllerBase
     // POST api/[controller]
     [ProducesResponseType((200), Type = typeof(Customer))]
     [ProducesResponseType((400))]
-    [ProducesResponseType((404))]
     [HttpPost("")]
     public async Task<IActionResult> PostAsync(InputCustomerModel inputModel)
     {
@@ -76,7 +76,7 @@ public class CustomersController : ControllerBase
 
             await _service.InsertAsync(inputModel);
 
-            return CreatedAtAction(nameof(GetByIdAsync), new { Id = inputModel.Id }, inputModel);
+            return Ok(inputModel);
         }
         catch (Exception exception)
         {
@@ -87,8 +87,8 @@ public class CustomersController : ControllerBase
 
 
     // PUT api/[controller]
-    [ProducesResponseType((200), Type = typeof(Customer))]
-    [ProducesResponseType((404))]
+    [ProducesResponseType((204))]
+    [ProducesResponseType((400))]
     [HttpPut("{id}")]
     public async Task<IActionResult> PutAsync(int id, EditCustomerModel editModel) 
     {

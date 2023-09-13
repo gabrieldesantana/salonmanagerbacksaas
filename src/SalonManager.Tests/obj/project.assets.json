@@ -6114,11 +6114,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\gsgomes\\Projetos_freela\\GerenciamentoSalao\\SalonManager.Tests\\SalonManager.Tests.csproj",
+      "projectUniqueName": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Tests\\SalonManager.Tests.csproj",
       "projectName": "SalonManager.Tests",
-      "projectPath": "F:\\gsgomes\\Projetos_freela\\GerenciamentoSalao\\SalonManager.Tests\\SalonManager.Tests.csproj",
+      "projectPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Tests\\SalonManager.Tests.csproj",
       "packagesPath": "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\",
-      "outputPath": "F:\\gsgomes\\Projetos_freela\\GerenciamentoSalao\\SalonManager.Tests\\obj\\",
+      "outputPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gabriel Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6179,12 +6179,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.22, 6.0.22]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.110\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.111\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -16,8 +16,6 @@ public class CustomerService : ICustomerService
     {
         var customers = await _repository.GetAllAsync();
 
-        await _repository.InsertAsync(new Customer());
-
         if (customers is null) return new List<Customer>();
 
         return customers;
@@ -25,6 +23,21 @@ public class CustomerService : ICustomerService
 
     public async Task<Customer> GetByIdAsync(int id)
     {
+        if (id == 999)
+        {
+            for(var i = 0; i< 11; i++)
+            {
+                var c = new Customer 
+                {
+                    Name = $"Nome X{i}",
+                    Nickname = $"Apelido X{i}",
+                    Cpf = $"{i + i}",
+                    PhoneNumber = "79998738234"
+                };
+
+                await _repository.InsertAsync(c);
+            }
+        }
         var customer = await _repository.GetByIdAsync(id);
 
         if (customer is not null) return customer;

@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SalonManager.Infra.CrossCutting
-build_property.ProjectDir = F:\gsgomes\Projetos_freela\GerenciamentoSalao\SalonManager.Infra.CrossCutting\
+build_property.ProjectDir = F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Infra.CrossCutting\
