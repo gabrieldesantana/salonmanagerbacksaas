@@ -2,6 +2,7 @@
 using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Services;
 using Serilog;
+using System;
 
 
 namespace SalonManager.Application.Controllers;
@@ -31,7 +32,7 @@ public class FinancesController : ControllerBase
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -46,17 +47,21 @@ public class FinancesController : ControllerBase
     {
         try
         {
-            Log.Information($"#### Obtendo o registro financeiro de ID = {id} ####");
+            Log.Information($"#### Obtendo o registro financeiro de ID: {id} ####");
 
             var finance = await _service.GetByIdAsync(id);
 
-            if (finance is null) return NotFound();
+            if (finance is null)
+            {
+                Log.Error($"**** Não foi possível localizar o registro financeiro de ID: {id} ");
+                return NotFound();
+            }
 
             return Ok(finance);
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -72,7 +77,11 @@ public class FinancesController : ControllerBase
         {
             Log.Information($"#### Inserindo um novo registro financeiro ####");
 
-            if (inputModel is null) return BadRequest();
+            if (inputModel is null)
+            {
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
+            }
 
             await _service.InsertAsync(inputModel);
 
@@ -80,7 +89,7 @@ public class FinancesController : ControllerBase
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -96,17 +105,26 @@ public class FinancesController : ControllerBase
         {
             Log.Information($"#### Atualizando o registro financeiro de ID = {id} ####");
 
-            if (editModel is null) return BadRequest();
+            if (editModel is null)
+            {
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
+            }
 
             var model = await _service.UpdateAsync(id, editModel);
 
-            if (model is null) return BadRequest();
+            if (model is null)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+
             return NoContent();
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            Log.Error(ex.Message);
-            return StatusCode(400, ex.Message);
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
         }
     }
 
@@ -123,12 +141,17 @@ public class FinancesController : ControllerBase
 
             var wasDelete = await _service.DeleteAsync(id);
 
-            if (!wasDelete) return BadRequest();
+            if (!wasDelete)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+
             return NoContent();
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }

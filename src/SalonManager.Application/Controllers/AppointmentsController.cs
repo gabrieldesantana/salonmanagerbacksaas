@@ -32,7 +32,7 @@ public class AppointmentsController : ControllerBase
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -51,13 +51,17 @@ public class AppointmentsController : ControllerBase
 
             var appointment = await _service.GetByIdAsync(id);
 
-            if (appointment is null) return NotFound();
+            if (appointment is null)
+            {
+                Log.Error($"**** Não foi possível localizar o agendamento de ID: {id} ");
+                return NotFound();
+            }
 
             return Ok(appointment);
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -70,19 +74,29 @@ public class AppointmentsController : ControllerBase
     {
         try
         {
+            Log.Information($"#### Atualizando o status do agendamento de ID: {id} ####");
+
             var appointment = await _service.GetByIdAsync(id);
 
-            if (appointment is null) return NotFound();
+            if (appointment is null)
+            {
+                Log.Error($"**** Não foi possível localizar o agendamento de ID: {id} ");
+                return NotFound();
+            }
 
             var statusChanged = await _service.UpdateStatusAsync(appointment);
 
-            if (statusChanged is false) return BadRequest();
-
+            if (statusChanged is false)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+                
             return NoContent();
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
 
@@ -99,7 +113,11 @@ public class AppointmentsController : ControllerBase
         {
             Log.Information($"#### Inserindo um novo agendamento ####");
 
-            if (inputModel is null) return BadRequest();
+            if (inputModel is null)
+            {
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
+            }
 
             await _service.InsertAsync(inputModel);
 
@@ -107,7 +125,7 @@ public class AppointmentsController : ControllerBase
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
@@ -123,17 +141,26 @@ public class AppointmentsController : ControllerBase
         {
             Log.Information($"#### Atualizando o agendamento de ID = {id} ####");
 
-            if (editModel is null) return BadRequest();
+            if (editModel is null)
+            {
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
+            }
 
             var model = await _service.UpdateAsync(id, editModel);
 
-            if (model is null) return BadRequest();
+            if (model is null)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+
             return NoContent();
         }
-        catch (Exception ex)
+        catch (Exception exception)
         {
-            Log.Error(ex.Message);
-            return StatusCode(400, ex.Message);
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
         }
     }
 
@@ -150,12 +177,17 @@ public class AppointmentsController : ControllerBase
 
             var wasDelete = await _service.DeleteAsync(id);
 
-            if (!wasDelete) return BadRequest();
+            if (!wasDelete)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+
             return NoContent();
         }
         catch (Exception exception)
         {
-            Log.Error(exception.Message);
+            Log.Error($"**** {exception.Message}");
             return StatusCode(400, exception.Message);
         }
     }
