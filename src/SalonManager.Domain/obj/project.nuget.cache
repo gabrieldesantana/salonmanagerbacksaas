@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "+dWHyNoGrV7B8qmkJxvwlSKenKmVEa/KzRiR9jQeAzxPY7JTP+K8dcQiggT2XXb3j93xmMMjYThoJJ9zoB83Nw==",
+  "dgSpecHash": "ZpzPlB9/Zot6htQeilMKcDHUICVutofgKXXC+mVyfrlOXxyzAGX51Lp+lREr5DQS5Lezpt06/BwCHocLlHlfmg==",
   "success": true,
   "projectFilePath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Domain\\SalonManager.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
   ],
   "logs": []
 }

@@ -7,9 +7,11 @@ namespace SalonManager.Service.Services;
 public class CustomerService : ICustomerService
 {
     private readonly ICustomerRepository _repository;
-    public CustomerService(ICustomerRepository repository)
+    private readonly IAppointmentRepository _appointmentRepository;
+    public CustomerService(ICustomerRepository repository, IAppointmentRepository appointmentRepository)
     {
         _repository = repository;
+        _appointmentRepository = appointmentRepository;
     }
 
     public async Task<List<Customer>> GetAllAsync()
@@ -32,15 +34,38 @@ public class CustomerService : ICustomerService
                     Name = $"Nome X{i}",
                     Nickname = $"Apelido X{i}",
                     Cpf = $"{i + i}",
-                    PhoneNumber = "79998738234"
+                    PhoneNumber = "79998738234",
+                    BirthDate = DateTime.Now
                 };
 
                 await _repository.InsertAsync(c);
             }
         }
-        var customer = await _repository.GetByIdAsync(id);
 
-        if (customer is not null) return customer;
+
+
+        var customerEdit = await _repository.GetByIdAsync(id);
+        var appointments = await _appointmentRepository.GetByCustomerIdAsync(id);
+
+        if (customerEdit is not null)
+        {
+            customerEdit.Appointments = appointments;
+            if (appointments != null && appointments.Any())
+            {
+                var lastAppointment = appointments.Where(x => x.Date < DateTime.Now).MaxBy(x => x.Date);
+                if (lastAppointment != null)
+                {
+                    customerEdit.LastService = lastAppointment.ServiceAppointment.Name;
+                    customerEdit.LastServiceDate = lastAppointment.Date;
+                }
+              
+            }
+
+            customerEdit = await _repository.UpdateAsync(customerEdit);
+
+            return customerEdit;
+        }
+
 
         return null;
     }
@@ -71,13 +96,9 @@ public class CustomerService : ICustomerService
 
         customerEdit.Name = editModel.Name;
         customerEdit.Nickname = editModel.Nickname;
-        customerEdit.Gender = editModel.Gender;
-        customerEdit.BirthDate = editModel.BirthDate;
         customerEdit.PhoneNumber = editModel.PhoneNumber;
 
-        customerEdit = await _repository.UpdateAsync(customerEdit);
-
-        return customerEdit;
+        return await _repository.UpdateAsync(customerEdit);
     }
 
     public async Task<bool> DeleteAsync(int id)

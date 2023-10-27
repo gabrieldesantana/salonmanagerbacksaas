@@ -1,4 +1,5 @@
 ﻿using SalonManager.Domain.Entities;
+using SalonManager.Domain.Enums;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Domain.Interfaces.Services;
 
@@ -16,7 +17,47 @@ public class FinanceService : IFinanceService
     {
         var finances = await _repository.GetAllAsync();
 
-        await _repository.InsertAsync(new Finance());
+        var customer = new Customer
+        {
+            Name = $"Nome X",
+            Nickname = $"Apelido X",
+            Cpf = $"222.333.444-88",
+            Gender = "Masculino",
+            PhoneNumber = "79998738234",
+            BirthDate = DateTime.Now,
+            Appointments= new List<Appointment> {},
+            LastService = "service",
+            LastServiceDate= DateTime.Now,
+            Times = 0
+        };
+        var service = new SalonService
+        {
+            Name = $"Nome X",
+            Category = $"Categoria X",
+            Actived = true,
+            Price = 100,
+            HaveTax = "Não",
+            Tax = 0
+        };
+
+        await _repository.InsertAsync(new Finance
+        {
+            Type = "Entrada",
+            Description = "Selagem",
+            Appointment = new Appointment 
+            {
+                CustomerAppointment = customer,
+                ServiceAppointment = service,
+                Description = "N/A",
+                Date = DateTime.Now,
+                Status = EAppointmentStatus.Iniciado,
+                Value = 130
+            },
+            Value = 130,
+            PaymentType = "PIX",
+            EntryDate = DateTime.MinValue
+        }
+        );
 
         if (finances is null) return new List<Finance>();
 
@@ -36,7 +77,7 @@ public class FinanceService : IFinanceService
     {
         var newFinance = new Finance
         {
-            Name = inputModel.Name,
+            Type = inputModel.Type,
             Value = inputModel.Value,
             EntryDate = inputModel.EntryDate,
             PaymentType = inputModel.PaymentType
@@ -51,7 +92,7 @@ public class FinanceService : IFinanceService
 
         if (financeEdit is null) return null;
 
-        financeEdit.Name = editModel.Name;
+        financeEdit.Type = editModel.Type;
 
         financeEdit = await _repository.UpdateAsync(financeEdit);
 

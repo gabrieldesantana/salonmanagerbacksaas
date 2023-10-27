@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Djv+8lFQU2h+paHv+IZZmQ6/nADidchK9BztUoaMovQpWE64LIgfrpVUTmwKJMa9S1YHzh+RqYfMlIgDWJW1Hg==",
+  "dgSpecHash": "3IA90EpKsNEPD1p8Kp864qwEtFZnQB4Uj8+QukMM62lyvZJ1t4RAftdqapBXlDpRlbvrhTQSUYo2A+8NJ1es8w==",
   "success": true,
   "projectFilePath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Tests\\SalonManager.Tests.csproj",
   "expectedPackageFiles": [
@@ -96,9 +96,9 @@
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
     "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.22\\microsoft.netcore.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.22\\microsoft.windowsdesktop.app.ref.6.0.22.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.22\\microsoft.aspnetcore.app.ref.6.0.22.nupkg.sha512"
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
   ],
   "logs": []
 }

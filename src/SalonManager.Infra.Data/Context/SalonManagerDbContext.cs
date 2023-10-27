@@ -22,5 +22,6 @@ namespace SalonManager.Infra.Data.Context
         public DbSet<SalonService> Services { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Finance> Finances { get; set; }
+        public DbSet<Goal> Goals { get; set; }
     }
 }

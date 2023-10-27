@@ -17,7 +17,7 @@ namespace SalonManager.Infra.Data.Repository
         public override async Task<List<Appointment>> GetAllAsync()
         {
             return await _context.Appointments
-            .Where(x => x.Actived == true)
+            .Where(x => x.Actived == true || x.Actived == false)
             .Include(p => p.CustomerAppointment)
             .Include(p => p.ServiceAppointment)
             .ToListAsync();
@@ -28,7 +28,16 @@ namespace SalonManager.Infra.Data.Repository
             return await _context.Appointments
             .Include(p => p.CustomerAppointment)
             .Include(p => p.ServiceAppointment)
-            .FirstOrDefaultAsync(x => x.CustomerId == id);
+            .FirstOrDefaultAsync(x => x.Id == id); ;
+        }
+
+        public async Task<List<Appointment>> GetByCustomerIdAsync(int customerId)
+        {
+            return await _context.Appointments
+                .Where(x => x.CustomerAppointmentId == customerId)
+                .Include(p => p.CustomerAppointment)
+                .Include(p => p.ServiceAppointment)
+                .ToListAsync();
         }
     }
 }

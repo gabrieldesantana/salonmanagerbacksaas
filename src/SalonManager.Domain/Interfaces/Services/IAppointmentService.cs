@@ -6,9 +6,9 @@ public interface IAppointmentService
 {
     Task<List<Appointment>> GetAllAsync();
     Task<Appointment> GetByIdAsync(int id);
-
-    Task<bool> UpdateStatusAsync(Appointment model);
+    Task<List<Appointment>> GetByCustomerIdAsync(int customerId);
+    Task<bool> UpdateStatusAsync(int id, EditAppointmentModel editModel);
     Task<Appointment> InsertAsync(InputAppointmentModel inputModel);
-    Task<Appointment> UpdateAsync(int id, EditAppointmentModel editModel);
+    Task<bool> UpdateAsync(int id, EditAppointmentModel editModel);
     Task<bool> DeleteAsync(int id);
 }

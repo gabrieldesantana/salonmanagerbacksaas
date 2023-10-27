@@ -248,3 +248,4 @@ F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Application\obj\
 F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Application\obj\Debug\net6.0\SalonManager.Application.pdb
 F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Application\obj\Debug\net6.0\SalonManager.Application.genruntimeconfig.cache
 F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Application\obj\Debug\net6.0\ref\SalonManager.Application.dll
+F:\gsgomes\Projetos_freela\SalonManagerBackEnd\src\SalonManager.Application\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

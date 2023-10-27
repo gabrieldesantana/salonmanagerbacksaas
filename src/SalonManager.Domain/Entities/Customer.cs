@@ -13,6 +13,7 @@ public class Customer : BaseEntity
     public string? LastService { get; set; }
     public DateTime LastServiceDate { get; set; }
     public int Times { get; set; }
+    public List<Appointment> Appointments { get; set; }
 
 }
 
@@ -23,5 +24,5 @@ public record InputCustomerModel
 
 public record EditCustomerModel 
 (
-    int Id, string? Name, string? Nickname, string? Gender, DateTime BirthDate, string PhoneNumber
+    int Id, string? Name, string? Nickname, string PhoneNumber
 );

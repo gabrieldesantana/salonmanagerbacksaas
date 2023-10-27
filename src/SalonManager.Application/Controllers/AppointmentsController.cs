@@ -66,27 +66,52 @@ public class AppointmentsController : ControllerBase
         }
     }
 
+    // GET api/[controller]/customerId/{id}
+    [ProducesResponseType((200), Type = typeof(Appointment))]
+    [ProducesResponseType((400))]
+    [ProducesResponseType((404))]
+    [HttpGet("customerId/{id}")]
+    public async Task<IActionResult> GetByCustomerIdAsync(int customerId)
+    {
+        try
+        {
+            Log.Information($"#### Obtendo os agendamento do cliente de ID = {customerId} ####");
+
+            var appointment = await _service.GetByCustomerIdAsync(customerId);
+
+            if (appointment is null)
+            {
+                Log.Error($"**** Não foi possível localizar os agendamento do cliente de ID: {customerId} ");
+                return NotFound();
+            }
+
+            return Ok(appointment);
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
+        }
+    }
+
     [ProducesResponseType((204))]
     [ProducesResponseType((400))]
     [ProducesResponseType((404))]
-    [HttpGet("{id}/updateStatus")]
-    public async Task<IActionResult> UpdateStatusAsync(int id)
+    [HttpPut("updateStatus/{id}")]
+    public async Task<IActionResult> UpdateStatusAsync(int id, [FromBody] EditAppointmentModel editModel)
     {
         try
         {
             Log.Information($"#### Atualizando o status do agendamento de ID: {id} ####");
 
-            var appointment = await _service.GetByIdAsync(id);
-
-            if (appointment is null)
+            if (editModel is null)
             {
-                Log.Error($"**** Não foi possível localizar o agendamento de ID: {id} ");
-                return NotFound();
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
             }
 
-            var statusChanged = await _service.UpdateStatusAsync(appointment);
-
-            if (statusChanged is false)
+            var model = await _service.UpdateStatusAsync(id, editModel);
+            if (model is false)
             {
                 Log.Error("**** Houve um problema ao processar essa requisição");
                 return BadRequest();
@@ -119,7 +144,10 @@ public class AppointmentsController : ControllerBase
                 return BadRequest();
             }
 
-            await _service.InsertAsync(inputModel);
+            var appointment = await _service.InsertAsync(inputModel);
+
+            if (appointment is null)
+               return BadRequest();
 
             return Ok(inputModel);
         }
@@ -149,7 +177,7 @@ public class AppointmentsController : ControllerBase
 
             var model = await _service.UpdateAsync(id, editModel);
 
-            if (model is null)
+            if (model is false)
             {
                 Log.Error("**** Houve um problema ao processar essa requisição");
                 return BadRequest();

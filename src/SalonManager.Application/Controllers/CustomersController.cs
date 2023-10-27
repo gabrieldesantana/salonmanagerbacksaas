@@ -103,7 +103,7 @@ public class CustomersController : ControllerBase
     {
         try
         {
-            Log.Information($"#### Atualizando o cliente de ID = {id} ####");
+            Log.Information($"#### Atualizando o cliente de ID: {id} ####");
 
             if (editModel is null)
             {
@@ -137,7 +137,7 @@ public class CustomersController : ControllerBase
     {
         try
         {
-            Log.Information($"#### Excluindo o cliente de ID = {id} ####");
+            Log.Information($"#### Excluindo o cliente de ID: {id} ####");
 
             var wasDelete = await _service.DeleteAsync(id);
 
