@@ -8,5 +8,6 @@ namespace SalonManager.Domain.Interfaces.Repository
         //User ValidateCredential(string username);
         //bool RevokeToken(string username);
         //User RefreshUserInfo(User user);
+        Task<User> GetByLoginAsync(string login);
     }
 }

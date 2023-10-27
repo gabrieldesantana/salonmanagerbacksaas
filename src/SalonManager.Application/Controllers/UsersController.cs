@@ -66,6 +66,34 @@ public class UsersController : ControllerBase
         }
     }
 
+    // GET api/[controller]/{login}
+    [ProducesResponseType((200), Type = typeof(User))]
+    [ProducesResponseType((400))]
+    [ProducesResponseType((404))]
+    [HttpGet("getLogin/{login}")]
+    public async Task<IActionResult> GetByLoginAsync(string login)
+    {
+        try
+        {
+            Log.Information($"#### Obtendo o usuario de Login: {login} ####");
+
+            var user = await _service.GetByLoginAsync(login);
+
+            if (user is null)
+            {
+                Log.Error($"**** Não foi possível localizar o usuario de Login: {login} ");
+                return NotFound();
+            }
+
+            return Ok(user);
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
+        }
+    }
+
 
     // POST api/[controller]
     [ProducesResponseType((200), Type = typeof(User))]

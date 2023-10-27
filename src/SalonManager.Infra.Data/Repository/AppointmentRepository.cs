@@ -28,7 +28,7 @@ namespace SalonManager.Infra.Data.Repository
             return await _context.Appointments
             .Include(p => p.CustomerAppointment)
             .Include(p => p.ServiceAppointment)
-            .FirstOrDefaultAsync(x => x.Id == id); ;
+            .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Appointment>> GetByCustomerIdAsync(int customerId)

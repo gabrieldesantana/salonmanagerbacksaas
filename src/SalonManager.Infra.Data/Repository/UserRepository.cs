@@ -1,4 +1,5 @@
-﻿using SalonManager.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Infra.Data.Context;
 using System;
@@ -15,6 +16,11 @@ namespace SalonManager.Infra.Data.Repository
             : base(context, unitOfWork)
         {
 
+        }
+
+        public async Task<User> GetByLoginAsync(string login)
+        {
+            return await _context.Users.FirstOrDefaultAsync((x => x.Login.ToLower() == login.ToLower()));
         }
 
         //public User RefreshUserInfo(User user)

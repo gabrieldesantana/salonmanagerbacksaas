@@ -6,6 +6,7 @@ public interface IUserService
 {
     Task<List<User>> GetAllAsync();
     Task<User> GetByIdAsync(int id);
+    Task<User> GetByLoginAsync(string login);
     Task<User> InsertAsync(InputUserModel inputModel);
     Task<User> UpdateAsync(int id, EditUserModel editModel);
     Task<bool> DeleteAsync(int id);

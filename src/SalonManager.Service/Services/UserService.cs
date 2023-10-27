@@ -24,6 +24,13 @@ namespace SalonManager.Service.Services
             return null;
         }
 
+        public async Task<User> GetByLoginAsync(string login)
+        {
+            var user = await _repository.GetByLoginAsync(login);
+            if (user != null) return user;
+            return null;
+        }
+
         public async Task<User> InsertAsync(InputUserModel inputModel)
         {
             var user = new User
