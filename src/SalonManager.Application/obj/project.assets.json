@@ -4376,19 +4376,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\": {}
+    "C:\\Users\\1202105723\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Application\\SalonManager.Application.csproj",
+      "projectUniqueName": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Application\\SalonManager.Application.csproj",
       "projectName": "SalonManager.Application",
-      "projectPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Application\\SalonManager.Application.csproj",
-      "packagesPath": "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\",
-      "outputPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Application\\obj\\",
+      "projectPath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Application\\SalonManager.Application.csproj",
+      "packagesPath": "C:\\Users\\1202105723\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Application\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Gabriel Gomes\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\1202105723\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4402,14 +4407,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Domain\\SalonManager.Domain.csproj": {
-              "projectPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Domain\\SalonManager.Domain.csproj"
+            "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Domain\\SalonManager.Domain.csproj": {
+              "projectPath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Domain\\SalonManager.Domain.csproj"
             },
-            "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Infra.Data\\SalonManager.Infra.Data.csproj": {
-              "projectPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Infra.Data\\SalonManager.Infra.Data.csproj"
+            "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Infra.Data\\SalonManager.Infra.Data.csproj": {
+              "projectPath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Infra.Data\\SalonManager.Infra.Data.csproj"
             },
-            "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Service\\SalonManager.Service.csproj": {
-              "projectPath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Service\\SalonManager.Service.csproj"
+            "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Service\\SalonManager.Service.csproj": {
+              "projectPath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Service\\SalonManager.Service.csproj"
             }
           }
         }
@@ -4488,24 +4493,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[6.0.24, 6.0.24]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[6.0.24, 6.0.24]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[6.0.24, 6.0.24]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[6.0.24, 6.0.24]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -4514,7 +4501,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.113\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

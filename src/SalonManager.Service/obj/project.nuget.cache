@@ -1,17 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "t6c5P4aCmh9BJFanBxVgf+QxMwZssLlzGCyn9UGwMLQRjXoCcvamvvWyHlAmLe/bBWtnHEJjG1nVJcJfGYD8xQ==",
+  "dgSpecHash": "yFQhJoj9YU37otQdCoqiNEhsbZSGAOrVrwht5s5Take4cQxcCHz5pXYLuYxP/uPtMlVY/gZK9uON1Jpfb/7Rlw==",
   "success": true,
-  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\SalonManagerBackEnd\\src\\SalonManager.Service\\SalonManager.Service.csproj",
+  "projectFilePath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Service\\SalonManager.Service.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
-    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
+    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
+    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
+    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\1202105723\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512"
   ],
   "logs": []
 }
