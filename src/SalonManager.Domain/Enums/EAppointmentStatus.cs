@@ -5,7 +5,7 @@
         Pendente = 1,
         Iniciado = 2,
         Cancelado = 3,
-        Adiado = 4,
+        Remarcado = 4,
         //Realizado = 5,
         Pendente_ = 5,
         Finalizado = 6

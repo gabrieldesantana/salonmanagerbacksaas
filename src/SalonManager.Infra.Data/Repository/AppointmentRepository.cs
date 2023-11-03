@@ -31,6 +31,11 @@ namespace SalonManager.Infra.Data.Repository
             .FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<Appointment> GetByIdCleanAsync(int id)
+        {
+            return await _context.Appointments.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<List<Appointment>> GetByCustomerIdAsync(int customerId)
         {
             return await _context.Appointments

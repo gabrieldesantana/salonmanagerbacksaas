@@ -72,23 +72,6 @@ public class AppointmentService : IAppointmentService
         return null;
     }
 
-    public async Task<bool> UpdateStatusAsync(int id ,EditAppointmentModel editModel)
-    {
-        try
-        {
-            var appointmentEdit = await _repository.GetByIdAsync(id);
-            if (appointmentEdit is null) return false;
-            appointmentEdit.Status = editModel.Status;
-
-            await _repository.UpdateAsync(appointmentEdit);
-            return true;
-        }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
-
 
     public async Task<Appointment> InsertAsync(InputAppointmentModel inputModel)
     {
@@ -106,8 +89,8 @@ public class AppointmentService : IAppointmentService
             CustomerAppointmentId = existingCustomer.Id,
             ServiceAppointmentId = existingService.Id,
             Description = inputModel.Description,
-            Date = inputModel.Date,
-            Value = existingService.Price
+            Date = inputModel.Date
+            //Value = existingService.Price
         };
 
         return await _repository.InsertAsync(newAppointment);
@@ -115,11 +98,11 @@ public class AppointmentService : IAppointmentService
 
     public async Task<bool> UpdateAsync(int id, EditAppointmentModel editModel)
     {
-        var appointmentEdit = await _repository.GetByIdAsync(id);
+        var appointmentEdit = await _repository.GetByIdCleanAsync(id);
 
         if (appointmentEdit == null) return false;
 
-        appointmentEdit.Status = (appointmentEdit.Date > editModel.Date ? EAppointmentStatus.Pendente : editModel.Status);
+        appointmentEdit.Status = EAppointmentStatus.Remarcado;
         appointmentEdit.Date = editModel.Date;
         //appointmentEdit.Description = editModel.Description;
 
@@ -132,9 +115,46 @@ public class AppointmentService : IAppointmentService
         return true;
     }
 
+    public async Task<bool> UpdateStatusAsync(int id, EditAppointmentModel editModel)
+    {
+        try
+        {
+            var appointmentEdit = await _repository.GetByIdCleanAsync(id);
+            if (appointmentEdit is null) return false;
+            appointmentEdit.Status = editModel.Status;
+
+            await _repository.UpdateAsync(appointmentEdit);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    public async Task<bool> FinishAppointmentAsync(int id, FinishAppointmentModel finishModel)
+    {
+        var appointmentFinish = await _repository.GetByIdCleanAsync(id);
+
+        if (appointmentFinish == null) return false;
+
+        appointmentFinish.PaymentMethod = finishModel.PaymentMethod;
+        appointmentFinish.PaymentWay = finishModel.PaymentWay;
+        appointmentFinish.Value = finishModel.Value;
+        appointmentFinish.Status = EAppointmentStatus.Finalizado;
+        appointmentFinish.Finished = true;
+
+        appointmentFinish = await _repository.UpdateAsync(appointmentFinish);
+
+        if (appointmentFinish == null)
+            return false;
+
+        return true;
+    }
+
     public async Task<bool> DeleteAsync(int id)
     {
-        var appointment = await _repository.GetByIdAsync(id);
+        var appointment = await _repository.GetByIdCleanAsync(id);
         if (appointment is null) return false;
 
         return await _repository.DeleteAsync(appointment.Id);

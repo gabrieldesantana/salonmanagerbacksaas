@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "RztDoETa5zfPkvjDIdQfiWIwuVSxUEbI/HyoCBzEwryIGTTRhnN85Y/VUNOB1qpB9Fcp/QieVCz7dN7b6IE9Kw==",
+  "dgSpecHash": "zvY2gqdqNilJnFeRap/xtwOxc1rzMfI379IN4AXqxxE6DUEphwg+Dns+yxxQ27kwAOlyZKt481dEgFDSVePIjw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Domain\\SalonManager.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\salonManager\\salonmanagerbackend\\src\\SalonManager.Domain\\SalonManager.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
+  ],
   "logs": []
 }

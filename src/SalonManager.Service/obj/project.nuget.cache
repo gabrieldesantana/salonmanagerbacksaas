@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "yFQhJoj9YU37otQdCoqiNEhsbZSGAOrVrwht5s5Take4cQxcCHz5pXYLuYxP/uPtMlVY/gZK9uON1Jpfb/7Rlw==",
+  "dgSpecHash": "j2n2KoPmhZgk28g8MM4B55c5eyP47MCFPehYjiNDqTu3uN5HqLDOeD/Ry+pN8HjkWENc4xARXcl9wbzLLHW0ng==",
   "success": true,
-  "projectFilePath": "C:\\Users\\1202105723\\Desktop\\code\\salonmanagerbackend\\src\\SalonManager.Service\\SalonManager.Service.csproj",
+  "projectFilePath": "F:\\gsgomes\\Projetos_freela\\salonManager\\salonmanagerbackend\\src\\SalonManager.Service\\SalonManager.Service.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
-    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
-    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
-    "C:\\Users\\1202105723\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
-    "C:\\Users\\1202105723\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512"
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.abstractions\\7.0.3\\microsoft.identitymodel.abstractions.7.0.3.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\7.0.3\\microsoft.identitymodel.jsonwebtokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.logging\\7.0.3\\microsoft.identitymodel.logging.7.0.3.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.identitymodel.tokens\\7.0.3\\microsoft.identitymodel.tokens.7.0.3.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\system.identitymodel.tokens.jwt\\7.0.3\\system.identitymodel.tokens.jwt.7.0.3.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.24\\microsoft.windowsdesktop.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.24\\microsoft.netcore.app.ref.6.0.24.nupkg.sha512",
+    "C:\\Users\\Gabriel Gomes\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.24\\microsoft.aspnetcore.app.ref.6.0.24.nupkg.sha512"
   ],
   "logs": []
 }

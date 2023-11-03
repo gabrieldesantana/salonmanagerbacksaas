@@ -127,6 +127,39 @@ public class AppointmentsController : ControllerBase
 
     }
 
+    [ProducesResponseType((204))]
+    [ProducesResponseType((400))]
+    [ProducesResponseType((404))]
+    [HttpPut("finish/{id}")]
+    public async Task<IActionResult> FinishAppointmentAsync(int id, [FromBody] FinishAppointmentModel finishModel)
+    {
+        try
+        {
+            Log.Information($"#### Finalizando o agendamento de ID: {id} ####");
+
+            if (finishModel is null)
+            {
+                Log.Error("**** As informações da Model não foram preenchidas");
+                return BadRequest();
+            }
+
+            var model = await _service.FinishAppointmentAsync(id, finishModel);
+            if (model is false)
+            {
+                Log.Error("**** Houve um problema ao processar essa requisição");
+                return BadRequest();
+            }
+
+            return NoContent();
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
+        }
+
+    }
+
 
     // POST api/[controller]
     [ProducesResponseType((200), Type = typeof(Appointment))]

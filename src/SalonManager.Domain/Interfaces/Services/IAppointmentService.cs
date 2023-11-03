@@ -10,5 +10,6 @@ public interface IAppointmentService
     Task<bool> UpdateStatusAsync(int id, EditAppointmentModel editModel);
     Task<Appointment> InsertAsync(InputAppointmentModel inputModel);
     Task<bool> UpdateAsync(int id, EditAppointmentModel editModel);
+    Task<bool> FinishAppointmentAsync(int id, FinishAppointmentModel finishModel);
     Task<bool> DeleteAsync(int id);
 }

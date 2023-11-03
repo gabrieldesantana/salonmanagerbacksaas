@@ -10,9 +10,15 @@ public class Appointment : BaseEntity
     public int ServiceAppointmentId { get; set; } 
     public SalonService? ServiceAppointment { get; set; }
     public DateTime Date { get; set; }
-    public double Value { get; set; }
     public EAppointmentStatus Status { get; set; }
     public string? Description { get; set; }
+
+    public string? PaymentMethod { get; set; }
+    public string? PaymentWay { get; set; }
+    public double Value { get; set; }
+    public bool Finished { get; set; }
+
+
     public Appointment()
     {
         Status = EAppointmentStatus.Pendente;
@@ -21,9 +27,15 @@ public class Appointment : BaseEntity
 
     public void ValidateStatus()
     {
+        var isPending = DateTime.Now < Date;
+
         if (Status == EAppointmentStatus.Pendente)
         {
-            this.Status = (Date <= DateTime.Now) ? EAppointmentStatus.Iniciado : EAppointmentStatus.Pendente;
+            this.Status = (Date <= DateTime.Now) ? EAppointmentStatus.Iniciado : Status;
+        }
+        else if (Status == EAppointmentStatus.Iniciado)
+        {
+            this.Status = (Date >= DateTime.Now) ? EAppointmentStatus.Pendente : Status;
         }
     }
 }
@@ -36,4 +48,9 @@ public record InputAppointmentModel
 public record EditAppointmentModel 
 (
     int Id, EAppointmentStatus Status, DateTime Date
-); 
+);
+
+public record FinishAppointmentModel
+(
+    int Id,string? PaymentMethod, string? PaymentWay, double Value, bool Finished
+);
