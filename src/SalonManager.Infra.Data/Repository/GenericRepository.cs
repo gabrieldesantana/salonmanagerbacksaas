@@ -24,12 +24,29 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
             .AsNoTracking().Where(x => x.Actived == true).ToListAsync();
     }
 
+    public virtual async Task<List<T>> GetAllByTenantIdAsync(string tenantId)
+    {
+        return await _dbSet
+            .AsNoTracking()
+            .Where(x => x.Actived == true && x.TenantId == tenantId)
+            .ToListAsync();
+    }
+
     public virtual async Task<T> GetByIdAsync(int id)
     {
         var entity = await _dbSet
         .FirstOrDefaultAsync(x => x.Id == id && x.Actived == true);
 
         return entity; 
+    }
+
+    public virtual async Task<T> GetByIdByTenantIdAsync(int id, string tenantId)
+    {
+        var entity = await _dbSet
+        .Where(x => x.TenantId == tenantId)
+        .FirstOrDefaultAsync(x => x.Id == id && x.Actived == true);
+
+        return entity;
     }
 
     public async Task<T> InsertAsync(T entity)
@@ -47,9 +64,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         return entity;
     }
 
-    public async Task<T> UpdateAsync(T entity)
+    public async Task<T> UpdateAsync(T entity, string tenantId)
     {
-        var result = await GetByIdAsync(entity.Id);
+        var result = await GetByIdByTenantIdAsync(entity.Id, entity.TenantId);
 
         if (result is not null)
         {

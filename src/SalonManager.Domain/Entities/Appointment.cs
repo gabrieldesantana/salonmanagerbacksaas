@@ -1,4 +1,5 @@
 ﻿using SalonManager.Domain.Enums;
+using System.Text.Json.Serialization;
 
 namespace SalonManager.Domain.Entities;
 
@@ -12,7 +13,6 @@ public class Appointment : BaseEntity
     public DateTime Date { get; set; }
     public EAppointmentStatus Status { get; set; }
     public string? Description { get; set; }
-
     public string? PaymentMethod { get; set; }
     public string? PaymentWay { get; set; }
     public double Value { get; set; }
@@ -42,15 +42,32 @@ public class Appointment : BaseEntity
 
 public record InputAppointmentModel 
 (
-    int Id, Customer? CustomerAppointment, int CustomerAppointmentId, int ServiceAppointmentId,  SalonService? ServiceAppointment, string Description, DateTime Date, double Value
+    int Id, Customer? CustomerAppointment, int CustomerAppointmentId, int ServiceAppointmentId,  SalonService? ServiceAppointment, string Description, DateTime Date, double Value, string TenantId
 );
 
 public record EditAppointmentModel 
 (
-    int Id, EAppointmentStatus Status, DateTime Date
+    int Id, EAppointmentStatus Status, DateTime Date, string TenantId
 );
 
 public record FinishAppointmentModel
 (
-    int Id,string? PaymentMethod, string? PaymentWay, double Value, bool Finished
+    int Id,string? PaymentMethod, string? PaymentWay, double Value, bool Finished, int CustomerAppointmentId, string TenantId
+);
+
+public record FinanceAppointmentModel
+(
+   DateTime StartDate,
+   DateTime EndDate,
+   string? TenantId
+);
+
+public record FinanceAppointmentViewModel
+(
+   List<Appointment>? Appointments,
+   double Total,
+   DateTime StartDate,
+   DateTime EndDate,
+   string? StartDateString,
+   string? EndDateString
 );

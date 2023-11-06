@@ -21,13 +21,13 @@ public class AppointmentsController : ControllerBase
     // GET api/[controller]
     [ProducesResponseType((200), Type = typeof(List<Appointment>))]
     [ProducesResponseType((400))]
-    [HttpGet("")]
-    public async Task<IActionResult> GetAllAsync()
+    [HttpGet("{tenantId}")]
+    public async Task<IActionResult> GetAllAsync(string? tenantId = "")
     {
         try
         {
             Log.Information("#### Obtendo todos os agendamentos ####");
-            var appointments = await _service.GetAllAsync();
+            var appointments = await _service.GetAllAsync(tenantId);
             return Ok(appointments);
         }
         catch (Exception exception)
@@ -42,14 +42,14 @@ public class AppointmentsController : ControllerBase
     [ProducesResponseType((200), Type = typeof(Appointment))]
     [ProducesResponseType((400))]
     [ProducesResponseType((404))]
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id)
+    [HttpGet("{tenantId}/{id}")]
+    public async Task<IActionResult> GetByIdAsync(int id, string? tenantId = "")
     {
         try
         {
             Log.Information($"#### Obtendo o agendamento de ID = {id} ####");
 
-            var appointment = await _service.GetByIdAsync(id);
+            var appointment = await _service.GetByIdAsync(id, tenantId);
 
             if (appointment is null)
             {
@@ -86,6 +86,34 @@ public class AppointmentsController : ControllerBase
             }
 
             return Ok(appointment);
+        }
+        catch (Exception exception)
+        {
+            Log.Error($"**** {exception.Message}");
+            return StatusCode(400, exception.Message);
+        }
+    }
+
+    // POST api/[controller]/getFinishedByDate/
+    [ProducesResponseType((200), Type = typeof(List<Appointment>))]
+    [ProducesResponseType((400))]
+    [ProducesResponseType((404))]
+    [HttpPost("getFinishedByDate")]
+    public async Task<IActionResult> GetFinishedByDateAsync(FinanceAppointmentModel financeModel)
+    {
+        try
+        {
+            Log.Information($"#### Obtendo os agendamentos entre {financeModel.StartDate} até {financeModel.EndDate} ####");
+
+            var newFinanceModel = await _service.GetFinishedByDateAsync(financeModel);
+
+            if (newFinanceModel is null)
+            {
+                Log.Error($"**** Não foi possível localizar os agendamentos solicitados");
+                return NotFound();
+            }
+
+            return Ok(newFinanceModel);
         }
         catch (Exception exception)
         {

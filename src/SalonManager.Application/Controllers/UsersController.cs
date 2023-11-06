@@ -111,7 +111,10 @@ public class UsersController : ControllerBase
                 return BadRequest();
             }
 
-            await _service.InsertAsync(inputModel);
+            var user = await _service.InsertAsync(inputModel);
+
+            if (user is null)
+                return BadRequest("A senha deve conter pelo menos 8 caracteres, incluindo pelo menos um dígito, uma letra minúscula e uma letra maiúscula.");
 
             return Ok(inputModel);
         }

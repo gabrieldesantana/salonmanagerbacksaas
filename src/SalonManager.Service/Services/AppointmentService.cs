@@ -18,9 +18,15 @@ public class AppointmentService : IAppointmentService
         _serviceRepository = serviceRepository;
     }
 
-    public async Task<List<Appointment>> GetAllAsync()
+    public async Task<List<Appointment>> GetAllAsync(string tenantId = "")
     {
-        var appointments = await _repository.GetAllAsync();
+        List<Appointment>? appointments;
+
+        if (tenantId == "")
+            appointments = await _repository.GetAllAsync();
+        else
+            appointments = await _repository.GetAllByTenantIdAsync(tenantId);
+
         foreach (var appointment in appointments) { appointment.ValidateStatus(); }
 
         if (appointments is null) return new List<Appointment>();
@@ -28,35 +34,14 @@ public class AppointmentService : IAppointmentService
         return appointments;
     }
 
-    public async Task<Appointment> GetByIdAsync(int id)
+    public async Task<Appointment> GetByIdAsync(int id, string tenantId = "")
     {
-        if (id == 999)
-        {
-            for(var i = 0; i< 11; i++)
-            {
-                var customer = new Customer
-                {
-                    Name = $"Nome X{i}",
-                    Nickname = $"Apelido X{i}",
-                    Cpf = $"{i + i}",
-                    Gender = "Masculino",
-                    PhoneNumber = "79998738234",
-                    BirthDate = DateTime.Now
-                };
-                var service = new SalonService
-                {
-                    Name = $"Nome X{i}",
-                    Category = $"Categoria X{i}",
-                    Actived = true,
-                    Price = 100 + i
-                };
-                var entryDate = DateTime.Now.AddDays(i);
+        Appointment? appointment;
 
-                await _repository.InsertAsync(new Appointment{CustomerAppointment = customer, ServiceAppointment = service,  Date = entryDate});
-            }
-        }
-
-        var appointment = await _repository.GetByIdAsync(id);
+        if (tenantId == "")
+            appointment = await _repository.GetByIdAsync(id);
+        else
+            appointment = await _repository.GetByIdByTenantIdAsync(id, tenantId);
 
         if (appointment is not null) return appointment;
 
@@ -67,9 +52,29 @@ public class AppointmentService : IAppointmentService
     {
         var appointments = await _repository.GetByCustomerIdAsync(customerId);
 
-        if (appointments != null) return appointments;
+        if (appointments is null) return null;
 
-        return null;
+        return appointments;
+    }
+
+    public async Task<FinanceAppointmentViewModel> GetFinishedByDateAsync(FinanceAppointmentModel financeModel)
+    {
+        var appointmentsFinished = await _repository.GetFinishedByDateAsync(financeModel);
+
+        var newFinanceModel = new FinanceAppointmentViewModel
+        (
+        appointmentsFinished,
+        appointmentsFinished.Sum(x => x.Value),
+        financeModel.StartDate,
+        financeModel.EndDate,
+        financeModel.StartDate.ToString("dd/MM/yyyy"),
+        financeModel.EndDate.ToString("dd/MM/yyyy")
+        );
+
+
+        if (newFinanceModel is null) return null;
+
+        return newFinanceModel;
     }
 
 
@@ -84,13 +89,13 @@ public class AppointmentService : IAppointmentService
 
         var newAppointment = new Appointment
         {
+            TenantId = inputModel.TenantId.ToString(),
             CustomerAppointment = existingCustomer,
             ServiceAppointment = existingService,
             CustomerAppointmentId = existingCustomer.Id,
             ServiceAppointmentId = existingService.Id,
             Description = inputModel.Description,
             Date = inputModel.Date
-            //Value = existingService.Price
         };
 
         return await _repository.InsertAsync(newAppointment);
@@ -104,10 +109,8 @@ public class AppointmentService : IAppointmentService
 
         appointmentEdit.Status = EAppointmentStatus.Remarcado;
         appointmentEdit.Date = editModel.Date;
-        //appointmentEdit.Description = editModel.Description;
 
-
-        appointmentEdit = await _repository.UpdateAsync(appointmentEdit);
+        appointmentEdit = await _repository.UpdateAsync(appointmentEdit, editModel.TenantId);
 
         if (appointmentEdit == null)
             return false;
@@ -123,7 +126,7 @@ public class AppointmentService : IAppointmentService
             if (appointmentEdit is null) return false;
             appointmentEdit.Status = editModel.Status;
 
-            await _repository.UpdateAsync(appointmentEdit);
+            await _repository.UpdateAsync(appointmentEdit, editModel.TenantId);
             return true;
         }
         catch (Exception)
@@ -134,17 +137,24 @@ public class AppointmentService : IAppointmentService
 
     public async Task<bool> FinishAppointmentAsync(int id, FinishAppointmentModel finishModel)
     {
-        var appointmentFinish = await _repository.GetByIdCleanAsync(id);
+        var appointmentFinish = await _repository.GetByIdAsync(id);
 
         if (appointmentFinish == null) return false;
 
         appointmentFinish.PaymentMethod = finishModel.PaymentMethod;
-        appointmentFinish.PaymentWay = finishModel.PaymentWay;
+
+        appointmentFinish.PaymentWay = (finishModel.PaymentWay == null) ? "A vista" : finishModel.PaymentWay;
+
+        if (finishModel.PaymentMethod == "Pix" || finishModel.PaymentMethod == "Dinheiro")
+            appointmentFinish.PaymentWay = "A Vista";
+
         appointmentFinish.Value = finishModel.Value;
         appointmentFinish.Status = EAppointmentStatus.Finalizado;
         appointmentFinish.Finished = true;
+        appointmentFinish.CustomerAppointment.IncreaseTimes();
+        appointmentFinish.ServiceAppointment.Price = finishModel.Value;
 
-        appointmentFinish = await _repository.UpdateAsync(appointmentFinish);
+        appointmentFinish = await _repository.UpdateAsync(appointmentFinish, finishModel.TenantId);
 
         if (appointmentFinish == null)
             return false;

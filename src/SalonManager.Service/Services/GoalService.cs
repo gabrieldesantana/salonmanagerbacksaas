@@ -81,19 +81,19 @@ public class GoalService : IGoalService
     {
         var goalEdit = await _repository.GetByIdAsync(id);
 
-        if (goalEdit is null) return null;
+        //if (goalEdit is null) return null;
 
-        goalEdit.Labels = editModel.Labels;
-        goalEdit.LabelCurrentValues = editModel.LabelCurrentValues;
-        goalEdit.CurrentValues = editModel.CurrentValues;
-        goalEdit.LabelFutureValues = editModel.LabelFutureValues;
-        goalEdit.FutureValues = editModel.FutureValues;
-        goalEdit.GoalType = editModel.GoalType;
-        goalEdit.GraphicType = editModel.GraphicType;
-        goalEdit.StartDate = editModel.StartDate;
-        goalEdit.EndDate = editModel.EndDate;
+        //goalEdit.Labels = editModel.Labels;
+        //goalEdit.LabelCurrentValues = editModel.LabelCurrentValues;
+        //goalEdit.CurrentValues = editModel.CurrentValues;
+        //goalEdit.LabelFutureValues = editModel.LabelFutureValues;
+        //goalEdit.FutureValues = editModel.FutureValues;
+        //goalEdit.GoalType = editModel.GoalType;
+        //goalEdit.GraphicType = editModel.GraphicType;
+        //goalEdit.StartDate = editModel.StartDate;
+        //goalEdit.EndDate = editModel.EndDate;
 
-        goalEdit = await _repository.UpdateAsync(goalEdit);
+        //goalEdit = await _repository.UpdateAsync(goalEdit);
 
         return goalEdit;
     }

@@ -14,37 +14,31 @@ public class CustomerService : ICustomerService
         _appointmentRepository = appointmentRepository;
     }
 
-    public async Task<List<Customer>> GetAllAsync()
+    public async Task<List<Customer>> GetAllAsync(string tenantId = "")
     {
-        var customers = await _repository.GetAllAsync();
+        List<Customer>? customers;
+
+        if (tenantId == "")
+            customers = await _repository.GetAllAsync();
+        else
+            customers = await _repository.GetAllByTenantIdAsync(tenantId);
 
         if (customers is null) return new List<Customer>();
 
         return customers;
     }
 
-    public async Task<Customer> GetByIdAsync(int id)
+    public async Task<Customer> GetByIdAsync(int id, string tenantId = "")
     {
-        if (id == 999)
-        {
-            for(var i = 0; i< 11; i++)
-            {
-                var c = new Customer 
-                {
-                    Name = $"Nome X{i}",
-                    Nickname = $"Apelido X{i}",
-                    Cpf = $"{i + i}",
-                    PhoneNumber = "79998738234",
-                    BirthDate = DateTime.Now
-                };
 
-                await _repository.InsertAsync(c);
-            }
-        }
+        Customer? customerEdit;
 
+        if (tenantId == "")
+            customerEdit = await _repository.GetByIdAsync(id);
+        else
+            customerEdit = await _repository.GetByIdByTenantIdAsync(id, tenantId);
 
-
-        var customerEdit = await _repository.GetByIdAsync(id);
+       
         var appointments = await _appointmentRepository.GetByCustomerIdAsync(id);
 
         if (customerEdit is not null)
@@ -61,7 +55,7 @@ public class CustomerService : ICustomerService
               
             }
 
-            customerEdit = await _repository.UpdateAsync(customerEdit);
+            customerEdit = await _repository.UpdateAsync(customerEdit, tenantId);
 
             return customerEdit;
         }
@@ -74,6 +68,7 @@ public class CustomerService : ICustomerService
     {
         var newCustomer = new Customer
         {
+            TenantId = inputModel.TenantId.ToString(),
             Cpf = inputModel.Cpf,
             Name = inputModel.Name,
             Nickname = inputModel.Nickname,
@@ -98,7 +93,7 @@ public class CustomerService : ICustomerService
         customerEdit.Nickname = editModel.Nickname;
         customerEdit.PhoneNumber = editModel.PhoneNumber;
 
-        return await _repository.UpdateAsync(customerEdit);
+        return await _repository.UpdateAsync(customerEdit, editModel.TenantId);
     }
 
     public async Task<bool> DeleteAsync(int id)

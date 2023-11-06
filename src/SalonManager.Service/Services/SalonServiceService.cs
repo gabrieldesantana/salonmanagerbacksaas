@@ -12,47 +12,42 @@ public class SalonServiceService : ISalonServiceService
         _repository = repository;
     }
 
-    public async Task<List<SalonService>> GetAllAsync()
+    public async Task<List<SalonService>> GetAllAsync(string tenantId = "")
     {
-        var services = await _repository.GetAllAsync();
+        List<SalonService>? services;
+
+        if (tenantId == "")
+            services = await _repository.GetAllAsync();
+        else
+            services = await _repository.GetAllByTenantIdAsync(tenantId);
 
         if (services is null) return new List<SalonService>();
 
         return services;
     }
 
-    public async Task<SalonService> GetByIdAsync(int id)
+    public async Task<SalonService> GetByIdAsync(int id, string? tenantId = "")
     {
-        if (id == 999)
-        {
-            for(var i = 0; i< 11; i++)
-            {
-                await _repository.InsertAsync(new SalonService 
-                {
-                    Name = $"Nome X{i}",
-                    Category = $"Categoria X{i}",
-                    Actived = true,
-                    Price = 100 + i
-                }
-                );
-            }
-        }
-        var service = await _repository.GetByIdAsync(id);
+        SalonService? service;
 
-        if (service is not null) return service;
+        if (tenantId == "")
+            service = await _repository.GetByIdAsync(id);
+        else
+            service = await _repository.GetByIdByTenantIdAsync(id, tenantId);
 
-        return null;
+        if (service is null) return new SalonService();
+
+        return service;
     }
 
     public async Task<SalonService> InsertAsync(InputSalonServiceModel inputModel)
     {
         var newSalonService = new SalonService
         {
+            TenantId = inputModel.TenantId.ToString(),
             Name = inputModel.Name,
             Category = inputModel.Category,
-            Price = inputModel.Price,
-            HaveTax = inputModel.HaveTax,
-            Tax = inputModel.Tax
+            Price = inputModel.Price
         };
 
         return await _repository.InsertAsync(newSalonService);
@@ -67,10 +62,8 @@ public class SalonServiceService : ISalonServiceService
         serviceEdit.Name = editModel.Name;
         serviceEdit.Category = editModel.Category;
         serviceEdit.Price = editModel.Price;
-        serviceEdit.HaveTax = editModel.HaveTax;
-        serviceEdit.Tax = editModel.Tax;
 
-        serviceEdit = await _repository.UpdateAsync(serviceEdit);
+        serviceEdit = await _repository.UpdateAsync(serviceEdit, editModel.TenantId);
 
         return serviceEdit;
     }

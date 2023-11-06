@@ -1,6 +1,8 @@
 ﻿using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Domain.Interfaces.Services;
+using SalonManager.Application.Helpers;
+using System.Text.RegularExpressions;
 
 namespace SalonManager.Service.Services
 {
@@ -35,13 +37,20 @@ namespace SalonManager.Service.Services
         {
             var user = new User
             {
-               Name = inputModel.Name,
-               CompanyName = inputModel.CompanyName,
-               Role = inputModel.Role,
-               Login = inputModel.Login,
-               Email = inputModel.Email,
-               Password = inputModel.Password
+                TenantId = Guid.NewGuid().ToString(),
+                Name = inputModel.Name,
+                CompanyName = inputModel.CompanyName,
+                Role = inputModel.Role,
+                Login = inputModel.Login,
+                Email = inputModel.Email,
             };
+
+            bool passwordOk = Regex.IsMatch(inputModel.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$");
+
+            if (!passwordOk)
+                return null;
+
+            user.SetPasswordHash(inputModel.Password);
 
             return await _repository.InsertAsync(user);
         }

@@ -21,13 +21,13 @@ public class CustomersController : ControllerBase
     // GET api/[controller]
     [ProducesResponseType((200), Type = typeof(List<Customer>))]
     [ProducesResponseType((400))]
-    [HttpGet("")]
-    public async Task<IActionResult> GetAllAsync() 
+    [HttpGet("{tenantId}")]
+    public async Task<IActionResult> GetAllAsync(string? tenantId = "") 
     {
         try
         {
             Log.Information("#### Obtendo todos os clientes ####");
-            var customers = await _service.GetAllAsync();
+            var customers = await _service.GetAllAsync(tenantId);
             return Ok(customers);
         }
         catch (Exception exception)
@@ -42,14 +42,14 @@ public class CustomersController : ControllerBase
     [ProducesResponseType((200), Type = typeof(Customer))]
     [ProducesResponseType((400))]
     [ProducesResponseType((404))]
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id) 
+    [HttpGet("{tenantId}/{id}")]
+    public async Task<IActionResult> GetByIdAsync(int id, string? tenantId = "")
     {
         try
         {
             Log.Information($"#### Obtendo o cliente de ID: {id} ####");
 
-            var customer = await _service.GetByIdAsync(id);
+            var customer = await _service.GetByIdAsync(id, tenantId);
 
             if (customer is null)
             {

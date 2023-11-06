@@ -1,4 +1,5 @@
-﻿using SalonManager.Domain.Enums;
+﻿using SalonManager.Application.Helpers;
+using SalonManager.Domain.Enums;
 
 namespace SalonManager.Domain.Entities
 {
@@ -12,8 +13,18 @@ namespace SalonManager.Domain.Entities
         public string? Password { get; set; }
 
 
-        public string? RefreshToken { get; set; }
-        public DateTime RefreshTokenExpiryTime { get; set; }
+        //public string? RefreshToken { get; set; }
+        //public DateTime RefreshTokenExpiryTime { get; set; }
+
+        public bool ValidPassword(string password)
+        {
+            return Password == password.GenerateHash();
+        }
+
+        public void SetPasswordHash(string password)
+        {
+            Password = password.GenerateHash();
+        }
 
     }
 

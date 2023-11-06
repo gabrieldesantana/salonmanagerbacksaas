@@ -9,5 +9,6 @@ namespace SalonManager.Domain.Interfaces.Repository
         //bool RevokeToken(string username);
         //User RefreshUserInfo(User user);
         Task<User> GetByLoginAsync(string login);
+        Task<User> UpdateAsync(User user);
     }
 }
