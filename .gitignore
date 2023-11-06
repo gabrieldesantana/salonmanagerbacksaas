@@ -39,6 +39,22 @@ bld/
 bin/
 obj/
 src/.vs/
+src/.vscode/
+src/SalonManager.Application/bin
+src/SalonManager.Application/obj
+src/SalonManager.Domain/bin
+src/SalonManager.Domain/obj
+
+src/SalonManager.Infra.CrossCutting/bin
+src/SalonManager.Infra.CrossCutting/obj
+src/SalonManager.Infra.Data/bin
+src/SalonManager.Infra.Data/obj
+
+
+src/SalonManager.Service/bin
+src/SalonManager.Service/obj
+src/SalonManager.Tests/bin
+src/SalonManager.Tests/obj
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
