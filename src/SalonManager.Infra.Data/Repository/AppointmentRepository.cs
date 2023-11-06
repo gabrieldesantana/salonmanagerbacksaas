@@ -2,7 +2,6 @@
 using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Infra.Data.Context;
-using SalonManager.Infra.Data.Repository.UnitOfWork;
 
 namespace SalonManager.Infra.Data.Repository
 {
@@ -19,6 +18,7 @@ namespace SalonManager.Infra.Data.Repository
             var tenantIds = new List<string>() { tenantId };
 
             return await _context.Appointments
+            .AsNoTracking()
             .Where(x => x.Actived == true && tenantIds.Contains(x.TenantId))
             .Include(p => p.CustomerAppointment)
             .Include(p => p.ServiceAppointment)
@@ -37,6 +37,7 @@ namespace SalonManager.Infra.Data.Repository
         public override async Task<List<Appointment>> GetAllAsync()
         {
             return await _context.Appointments
+             .AsNoTracking()
             .Where(x => x.Actived == true || x.Actived == false)
             .Include(p => p.CustomerAppointment)
             .Include(p => p.ServiceAppointment)
@@ -71,6 +72,7 @@ namespace SalonManager.Infra.Data.Repository
         public async Task<List<Appointment>> GetFinishedByDateAsync(FinanceAppointmentModel financeModel)
         {
             return await _context.Appointments
+                .AsNoTracking()
                 .Where(
                 x => x.Date.Date >= financeModel.StartDate.Date &&
                 x.Date.Date <= financeModel.EndDate.Date &&

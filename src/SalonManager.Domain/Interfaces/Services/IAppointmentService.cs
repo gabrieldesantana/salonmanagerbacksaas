@@ -4,8 +4,8 @@ namespace SalonManager.Domain.Interfaces.Services;
 
 public interface IAppointmentService
 {
-    Task<List<Appointment>> GetAllAsync(string tenantId);
-    Task<Appointment> GetByIdAsync(int id, string tenantId);
+    Task<List<Appointment>> GetAllAsync(string tenantId = "");
+    Task<Appointment> GetByIdAsync(int id, string tenantId = "");
     Task<List<Appointment>> GetByCustomerIdAsync(int customerId);
 
     Task<FinanceAppointmentViewModel> GetFinishedByDateAsync(FinanceAppointmentModel financeModel);
