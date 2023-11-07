@@ -71,11 +71,14 @@ namespace SalonManager.Infra.Data.Repository
 
         public async Task<List<Appointment>> GetFinishedByDateAsync(FinanceAppointmentModel financeModel)
         {
+            var startDate = DateTime.SpecifyKind(financeModel.StartDate, DateTimeKind.Unspecified);
+            var endDate = DateTime.SpecifyKind(financeModel.EndDate, DateTimeKind.Unspecified);
+
             return await _context.Appointments
                 .AsNoTracking()
                 .Where(
-                x => x.Date.Date >= financeModel.StartDate.Date &&
-                x.Date.Date <= financeModel.EndDate.Date &&
+                x => x.Date.Date >= startDate.Date &&
+                x.Date.Date <= endDate.Date &&
                 x.Status == Domain.Enums.EAppointmentStatus.Finalizado &&
                 x.TenantId == financeModel.TenantId)
                 .Include(p => p.CustomerAppointment)

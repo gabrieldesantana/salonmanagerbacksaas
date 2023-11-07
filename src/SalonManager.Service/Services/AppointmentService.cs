@@ -95,7 +95,7 @@ public class AppointmentService : IAppointmentService
             CustomerAppointmentId = existingCustomer.Id,
             ServiceAppointmentId = existingService.Id,
             Description = inputModel.Description,
-            Date = inputModel.Date
+            Date = DateTime.SpecifyKind(inputModel.Date, DateTimeKind.Unspecified)
         };
 
         return await _repository.InsertAsync(newAppointment);
@@ -151,6 +151,7 @@ public class AppointmentService : IAppointmentService
         appointmentFinish.Value = finishModel.Value;
         appointmentFinish.Status = EAppointmentStatus.Finalizado;
         appointmentFinish.Finished = true;
+        appointmentFinish.FinishedDate = DateTime.Now;
         appointmentFinish.CustomerAppointment.IncreaseTimes();
         appointmentFinish.ServiceAppointment.Price = finishModel.Value;
 

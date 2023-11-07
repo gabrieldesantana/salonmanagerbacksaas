@@ -1,11 +1,9 @@
 ﻿using SalonManager.Domain.Enums;
-using System.Text.Json.Serialization;
 
 namespace SalonManager.Domain.Entities;
 
 public class Appointment : BaseEntity
 {
-    //public int EmployeeId { get; set; }
     public int CustomerAppointmentId { get; set; }
     public Customer? CustomerAppointment { get; set; }
     public int ServiceAppointmentId { get; set; } 
@@ -17,6 +15,7 @@ public class Appointment : BaseEntity
     public string? PaymentWay { get; set; }
     public double Value { get; set; }
     public bool Finished { get; set; }
+    public DateTime? FinishedDate { get; set; }
 
 
     public Appointment()

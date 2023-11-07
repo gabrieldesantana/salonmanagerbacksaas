@@ -44,9 +44,10 @@ public class CustomerService : ICustomerService
         if (customerEdit is not null)
         {
             customerEdit.Appointments = appointments;
+
             if (appointments != null && appointments.Any())
             {
-                var lastAppointment = appointments.Where(x => x.Date < DateTime.Now).MaxBy(x => x.Date);
+                var lastAppointment = appointments.Where(x => x.Date < DateTime.Now  && x.Status == Domain.Enums.EAppointmentStatus.Finalizado).MaxBy(x => x.Date);
                 if (lastAppointment != null)
                 {
                     customerEdit.LastService = lastAppointment.ServiceAppointment.Name;

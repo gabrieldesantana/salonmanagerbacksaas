@@ -1,6 +1,3 @@
-
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Infra.Data.Context;

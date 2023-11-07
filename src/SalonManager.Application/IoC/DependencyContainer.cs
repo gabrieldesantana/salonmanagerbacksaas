@@ -14,14 +14,13 @@ namespace SalonManager.Application.IoC
         public static void AddRegisterServices(this IServiceCollection services)
         {
             #region dbContext and ILogger
-            services.AddDbContext<SalonManagerDbContext>(opt => opt.UseInMemoryDatabase("database"));
+            //services.AddDbContext<SalonManagerDbContext>(opt => opt.UseInMemoryDatabase("database"));
             #endregion
 
             #region Service
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ISalonServiceService, SalonServiceService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
-            services.AddScoped<IGoalService, GoalService>();
             services.AddScoped<IUserService, UserService>();
             #endregion
 
@@ -29,7 +28,6 @@ namespace SalonManager.Application.IoC
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ISalonServiceRepository, SalonServiceRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            services.AddScoped<IGoalRepository, GoalRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

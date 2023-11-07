@@ -27,7 +27,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99 - Tests", "99 - Tests", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalonManager.Tests", "SalonManager.Tests\SalonManager.Tests.csproj", "{9A340C33-A009-4826-AE9A-92D9A81627C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalonManager.Infra.CrossCutting", "SalonManager.Infra.CrossCutting\SalonManager.Infra.CrossCutting.csproj", "{639AA2B6-E26A-4C9D-A33E-F53B219EB8C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SalonManager.Infra.CrossCutting", "SalonManager.Infra.CrossCutting\SalonManager.Infra.CrossCutting.csproj", "{639AA2B6-E26A-4C9D-A33E-F53B219EB8C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
