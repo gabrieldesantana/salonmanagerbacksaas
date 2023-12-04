@@ -51,7 +51,7 @@ public record EditAppointmentModel
 
 public record FinishAppointmentModel
 (
-    int Id,string? PaymentMethod, string? PaymentWay, double Value, bool Finished, int CustomerAppointmentId, string TenantId
+    int Id,string? PaymentMethod, string? PaymentWay, double Value, bool Finished, int CustomerAppointmentId, string? Description, string TenantId
 );
 
 public record FinanceAppointmentModel

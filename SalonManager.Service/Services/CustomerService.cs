@@ -18,7 +18,7 @@ public class CustomerService : ICustomerService
     {
         List<Customer>? customers;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             customers = await _repository.GetAllAsync();
         else
             customers = await _repository.GetAllByTenantIdAsync(tenantId);
@@ -33,7 +33,7 @@ public class CustomerService : ICustomerService
 
         Customer? customerEdit;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             customerEdit = await _repository.GetByIdAsync(id);
         else
             customerEdit = await _repository.GetByIdByTenantIdAsync(id, tenantId);
@@ -93,6 +93,8 @@ public class CustomerService : ICustomerService
         customerEdit.Name = editModel.Name;
         customerEdit.Nickname = editModel.Nickname;
         customerEdit.PhoneNumber = editModel.PhoneNumber;
+        customerEdit.Cpf= editModel.Cpf;
+        customerEdit.BirthDate= editModel.BirthDate;
 
         return await _repository.UpdateAsync(customerEdit, editModel.TenantId);
     }

@@ -22,7 +22,7 @@ public class AppointmentService : IAppointmentService
     {
         List<Appointment>? appointments;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             appointments = await _repository.GetAllAsync();
         else
             appointments = await _repository.GetAllByTenantIdAsync(tenantId);
@@ -38,7 +38,7 @@ public class AppointmentService : IAppointmentService
     {
         Appointment? appointment;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             appointment = await _repository.GetByIdAsync(id);
         else
             appointment = await _repository.GetByIdByTenantIdAsync(id, tenantId);
@@ -154,6 +154,7 @@ public class AppointmentService : IAppointmentService
         appointmentFinish.FinishedDate = DateTime.Now;
         appointmentFinish.CustomerAppointment.IncreaseTimes();
         appointmentFinish.ServiceAppointment.Price = finishModel.Value;
+        appointmentFinish.Description = finishModel.Description;
 
         appointmentFinish = await _repository.UpdateAsync(appointmentFinish, finishModel.TenantId);
 

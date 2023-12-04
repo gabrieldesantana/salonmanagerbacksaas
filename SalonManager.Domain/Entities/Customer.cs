@@ -28,7 +28,7 @@ public record InputCustomerModel
 
 public record EditCustomerModel 
 (
-    int Id, string? Name, string? Nickname, string PhoneNumber, string TenantId
+    int Id, string? Name, string? Nickname, string PhoneNumber, string? Cpf, DateTime BirthDate, string TenantId
 );
 
 

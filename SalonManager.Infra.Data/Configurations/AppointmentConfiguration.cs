@@ -40,7 +40,7 @@ namespace SalonManager.Infra.Data.Configurations
             builder.Property(p => p.PaymentWay).HasColumnType("varchar(50)");
             builder.Property(p => p.PaymentMethod).HasColumnType("varchar(50)");
 
-            builder.Property(p => p.Value).HasColumnType("real");
+            builder.Property(p => p.Value).HasColumnType("numeric");
 
             builder.Property(p => p.Finished)
                 .HasDefaultValue(false)

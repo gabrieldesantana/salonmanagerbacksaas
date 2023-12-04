@@ -16,7 +16,7 @@ public class SalonServiceService : ISalonServiceService
     {
         List<SalonService>? services;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             services = await _repository.GetAllAsync();
         else
             services = await _repository.GetAllByTenantIdAsync(tenantId);
@@ -30,7 +30,7 @@ public class SalonServiceService : ISalonServiceService
     {
         SalonService? service;
 
-        if (tenantId == "")
+        if (tenantId == "80719")
             service = await _repository.GetByIdAsync(id);
         else
             service = await _repository.GetByIdByTenantIdAsync(id, tenantId);
