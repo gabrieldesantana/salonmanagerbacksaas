@@ -9,7 +9,7 @@ public class SalonService : BaseEntity
 }
 public record InputSalonServiceModel 
 (
-    int Id, string? Name, string? Category, double Price, string TenantId
+    int Id, string? Name, string? Category, double Price, string TenantId, int UserCreatorId
 );
 
 public record EditSalonServiceModel 

@@ -69,6 +69,7 @@ public class CustomerService : ICustomerService
     {
         var newCustomer = new Customer
         {
+            UserCreatorId = inputModel.UserCreatorId,
             TenantId = inputModel.TenantId.ToString(),
             Cpf = inputModel.Cpf,
             Name = inputModel.Name,

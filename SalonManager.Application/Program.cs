@@ -1,4 +1,5 @@
 using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -60,7 +61,13 @@ var app = builder.Build();
 //}
 
 app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUI
+( 
+    c => {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "SalonManager.API");
+        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+        }
+);
 
 app.UseCors(
     options => options

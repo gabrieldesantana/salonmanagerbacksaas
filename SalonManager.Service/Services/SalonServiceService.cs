@@ -44,6 +44,7 @@ public class SalonServiceService : ISalonServiceService
     {
         var newSalonService = new SalonService
         {
+            UserCreatorId = inputModel.UserCreatorId,
             TenantId = inputModel.TenantId.ToString(),
             Name = inputModel.Name,
             Category = inputModel.Category,

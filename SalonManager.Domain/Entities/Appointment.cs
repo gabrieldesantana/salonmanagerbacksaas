@@ -41,7 +41,7 @@ public class Appointment : BaseEntity
 
 public record InputAppointmentModel 
 (
-    int Id, Customer? CustomerAppointment, int CustomerAppointmentId, int ServiceAppointmentId,  SalonService? ServiceAppointment, string Description, DateTime Date, double Value, string TenantId
+    int Id, Customer? CustomerAppointment, int CustomerAppointmentId, int ServiceAppointmentId,  SalonService? ServiceAppointment, string Description, DateTime Date, double Value, string TenantId, int UserCreatorId
 );
 
 public record EditAppointmentModel 

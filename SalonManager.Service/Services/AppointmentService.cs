@@ -89,6 +89,7 @@ public class AppointmentService : IAppointmentService
 
         var newAppointment = new Appointment
         {
+            UserCreatorId = inputModel.UserCreatorId,
             TenantId = inputModel.TenantId.ToString(),
             CustomerAppointment = existingCustomer,
             ServiceAppointment = existingService,

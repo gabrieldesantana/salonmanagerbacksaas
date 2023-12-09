@@ -15,6 +15,7 @@ namespace SalonManager.Domain.Entities
             Actived = true;
         }
         public string TenantId { get; set; }
+        public int UserCreatorId { get; set; }
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool Actived { get; set; }

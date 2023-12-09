@@ -23,7 +23,7 @@ public class Customer : BaseEntity
 
 public record InputCustomerModel
 (
-    int Id, string? Cpf, string? Name, string? Nickname, string? Gender, DateTime BirthDate, string PhoneNumber, string LastService, DateTime LastServiceDate, string TenantId
+    int Id, string? Cpf, string? Name, string? Nickname, string? Gender, DateTime BirthDate, string PhoneNumber, string LastService, DateTime LastServiceDate, string TenantId, int UserCreatorId
 );
 
 public record EditCustomerModel 

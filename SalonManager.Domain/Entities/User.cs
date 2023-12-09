@@ -6,7 +6,11 @@ namespace SalonManager.Domain.Entities
     public class User : BaseEntity
     {
         public string? Name { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string CPF { get; set; }
+
         public string? CompanyName { get; set; }
+
         public EUserRole Role { get; set; }
         public string? Login { get; set; }
         public string? Email { get; set; }
