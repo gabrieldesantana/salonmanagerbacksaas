@@ -7,11 +7,13 @@ namespace SalonManager.Domain.Entities
     {
         public string? Name { get; set; }
         public DateTime BirthDate { get; set; }
-        public string CPF { get; set; }
+        public string? CPF { get; set; }
 
-        public string? CompanyName { get; set; }
+        public Company? Company { get; set; }
+        public int CompanyId { get; set; }
 
         public EUserRole Role { get; set; }
+
         public string? Login { get; set; }
         public string? Email { get; set; }
         public string? Password { get; set; }
@@ -26,11 +28,16 @@ namespace SalonManager.Domain.Entities
             Password = password.GenerateHash();
         }
 
+        public void SetCreatorId()
+        { 
+            UserCreatorId = Id;
+        }
+
     }
 
     public record InputUserModel 
         (
-            string? Name, string? CompanyName, EUserRole Role, string? Login, string? Email, string? Password
+            string? Name, int CompanyId, EUserRole Role, string? Login, string? Email, string? Password
         );
     public record EditUserModel
         (

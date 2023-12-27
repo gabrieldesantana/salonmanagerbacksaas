@@ -35,15 +35,20 @@ namespace SalonManager.Service.Services
 
         public async Task<User> InsertAsync(InputUserModel inputModel)
         {
+            var company = new Company();
+            // var company = "_companyRepository.GetByIdAsync(inputModel.CompanyId)";
+
             var user = new User
             {
-                TenantId = Guid.NewGuid().ToString(),
                 Name = inputModel.Name,
-                CompanyName = inputModel.CompanyName,
+                CompanyId = inputModel.CompanyId,
                 Role = inputModel.Role,
                 Login = inputModel.Login,
                 Email = inputModel.Email,
+                TenantId = company.TenantId //add
             };
+
+            user.SetCreatorId(); //linkando o id
 
             bool passwordOk = Regex.IsMatch(inputModel.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$");
 
