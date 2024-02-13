@@ -8,6 +8,7 @@ public class CustomerService : ICustomerService
 {
     private readonly ICustomerRepository _repository;
     private readonly IAppointmentRepository _appointmentRepository;
+    private const string tenantIdAdmin = "80719";
     public CustomerService(ICustomerRepository repository, IAppointmentRepository appointmentRepository)
     {
         _repository = repository;
@@ -16,12 +17,10 @@ public class CustomerService : ICustomerService
 
     public async Task<List<Customer>> GetAllAsync(string tenantId = "")
     {
-        List<Customer>? customers;
 
-        if (tenantId == "80719")
-            customers = await _repository.GetAllAsync();
-        else
-            customers = await _repository.GetAllByTenantIdAsync(tenantId);
+        var customers = await ((tenantId != tenantIdAdmin) 
+            ? _repository.GetAllAsync() 
+            : _repository.GetAllByTenantIdAsync(tenantId));
 
         if (customers is null) return new List<Customer>();
 
@@ -31,38 +30,31 @@ public class CustomerService : ICustomerService
     public async Task<Customer> GetByIdAsync(int id, string tenantId = "")
     {
 
-        Customer? customerEdit;
+        var customerEdit = await ((tenantId != tenantIdAdmin)
+        ? _repository.GetByIdAsync(id)
+        : _repository.GetByIdByTenantIdAsync(id,tenantId));
 
-        if (tenantId == "80719")
-            customerEdit = await _repository.GetByIdAsync(id);
-        else
-            customerEdit = await _repository.GetByIdByTenantIdAsync(id, tenantId);
+        if (customerEdit is null)
+            return null;
 
-       
         var appointments = await _appointmentRepository.GetByCustomerIdAsync(id);
 
-        if (customerEdit is not null)
-        {
-            customerEdit.Appointments = appointments;
+        if (appointments is null)
+            return null;
 
-            if (appointments != null && appointments.Any())
-            {
-                var lastAppointment = appointments.Where(x => x.Date < DateTime.Now  && x.Status == Domain.Enums.EAppointmentStatus.Finalizado).MaxBy(x => x.Date);
-                if (lastAppointment != null)
-                {
-                    customerEdit.LastService = lastAppointment.ServiceAppointment.Name;
-                    customerEdit.LastServiceDate = lastAppointment.Date;
-                }
-              
-            }
+        customerEdit.Appointments = appointments;
 
-            customerEdit = await _repository.UpdateAsync(customerEdit, tenantId);
+        var lastAppointment = appointments.Where(x => x.Date < DateTime.Now && x.Status == Domain.Enums.EAppointmentStatus.Finalizado).MaxBy(x => x.Date);
 
-            return customerEdit;
-        }
+        if (lastAppointment is null)
+            return null;
 
+        customerEdit.LastService = lastAppointment.ServiceAppointment.Name;
+        customerEdit.LastServiceDate = lastAppointment.Date;
 
-        return null;
+        customerEdit = await _repository.UpdateAsync(customerEdit, tenantId);
+
+        return customerEdit;
     }
 
     public async Task<Customer> InsertAsync(InputCustomerModel inputModel)

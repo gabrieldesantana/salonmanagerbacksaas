@@ -22,6 +22,7 @@ namespace SalonManager.Application.IoC
             services.AddScoped<ISalonServiceService, SalonServiceService>();
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICompanyService, CompanyService>();
             #endregion
 
             #region Repository
@@ -29,7 +30,7 @@ namespace SalonManager.Application.IoC
             services.AddScoped<ISalonServiceRepository, SalonServiceRepository>();
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             #endregion
             //services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));

@@ -10,6 +10,7 @@ public class AppointmentService : IAppointmentService
     private readonly IAppointmentRepository _repository;
     private readonly ISalonServiceRepository _serviceRepository;
     private readonly ICustomerRepository _customerRepository;
+    private const string tenantIdAdmin = "80719";
 
     public AppointmentService(IAppointmentRepository repository, ICustomerRepository customerRepository, ISalonServiceRepository serviceRepository)
     {
@@ -20,39 +21,36 @@ public class AppointmentService : IAppointmentService
 
     public async Task<List<Appointment>> GetAllAsync(string tenantId = "")
     {
-        List<Appointment>? appointments;
 
-        if (tenantId == "80719")
-            appointments = await _repository.GetAllAsync();
-        else
-            appointments = await _repository.GetAllByTenantIdAsync(tenantId);
+        var appointments = await (tenantId == tenantIdAdmin
+            ? _repository.GetAllAsync()
+            : _repository.GetAllByTenantIdAsync(tenantId));
+
+        if (!appointments.Any()) 
+            return new List<Appointment>();
 
         foreach (var appointment in appointments) { appointment.ValidateStatus(); }
-
-        if (appointments is null) return new List<Appointment>();
 
         return appointments;
     }
 
     public async Task<Appointment> GetByIdAsync(int id, string tenantId = "")
     {
-        Appointment? appointment;
 
-        if (tenantId == "80719")
-            appointment = await _repository.GetByIdAsync(id);
-        else
-            appointment = await _repository.GetByIdByTenantIdAsync(id, tenantId);
+        var appointment = await (tenantId == tenantIdAdmin
+            ?  _repository.GetByIdAsync(id)
+            : _repository.GetByIdByTenantIdAsync(id, tenantId));
 
-        if (appointment is not null) return appointment;
+        if (appointment is null) return null;
 
-        return null;
+        return appointment;
     }
 
     public async Task<List<Appointment>> GetByCustomerIdAsync(int customerId)
     {
         var appointments = await _repository.GetByCustomerIdAsync(customerId);
 
-        if (appointments is null) return null;
+        if (!appointments.Any()) return new List<Appointment>();
 
         return appointments;
     }
@@ -61,20 +59,20 @@ public class AppointmentService : IAppointmentService
     {
         var appointmentsFinished = await _repository.GetFinishedByDateAsync(financeModel);
 
-        var newFinanceModel = new FinanceAppointmentViewModel
+        if (!appointmentsFinished.Any())
+            return null;
+
+        var totalValue = appointmentsFinished.Sum(x => x.Value);
+
+        return new FinanceAppointmentViewModel
         (
         appointmentsFinished,
-        appointmentsFinished.Sum(x => x.Value),
+        totalValue,
         financeModel.StartDate,
         financeModel.EndDate,
         financeModel.StartDate.ToString("dd/MM/yyyy"),
         financeModel.EndDate.ToString("dd/MM/yyyy")
         );
-
-
-        if (newFinanceModel is null) return null;
-
-        return newFinanceModel;
     }
 
 
@@ -125,6 +123,7 @@ public class AppointmentService : IAppointmentService
         {
             var appointmentEdit = await _repository.GetByIdCleanAsync(id);
             if (appointmentEdit is null) return false;
+
             appointmentEdit.Status = editModel.Status;
 
             await _repository.UpdateAsync(appointmentEdit, editModel.TenantId);

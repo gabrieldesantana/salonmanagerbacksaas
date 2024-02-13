@@ -7,6 +7,7 @@ namespace SalonManager.Service.Services;
 public class SalonServiceService : ISalonServiceService
 {
     private readonly ISalonServiceRepository _repository;
+    private const string tenantIdAdmin = "80719";
     public SalonServiceService(ISalonServiceRepository repository)
     {
         _repository = repository;
@@ -14,12 +15,9 @@ public class SalonServiceService : ISalonServiceService
 
     public async Task<List<SalonService>> GetAllAsync(string tenantId = "")
     {
-        List<SalonService>? services;
-
-        if (tenantId == "80719")
-            services = await _repository.GetAllAsync();
-        else
-            services = await _repository.GetAllByTenantIdAsync(tenantId);
+        var services = await ((tenantId != tenantIdAdmin) 
+            ? _repository.GetAllAsync()
+            : _repository.GetAllByTenantIdAsync(tenantId));
 
         if (services is null) return new List<SalonService>();
 
@@ -28,12 +26,9 @@ public class SalonServiceService : ISalonServiceService
 
     public async Task<SalonService> GetByIdAsync(int id, string? tenantId = "")
     {
-        SalonService? service;
-
-        if (tenantId == "80719")
-            service = await _repository.GetByIdAsync(id);
-        else
-            service = await _repository.GetByIdByTenantIdAsync(id, tenantId);
+        var service = await ((tenantId != tenantIdAdmin)
+           ? _repository.GetByIdAsync(id)
+           : _repository.GetByIdByTenantIdAsync(id, tenantId));
 
         if (service is null) return new SalonService();
 

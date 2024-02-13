@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SalonManager.Infra.Data.Context;
@@ -11,9 +12,11 @@ using SalonManager.Infra.Data.Context;
 namespace SalonManager.Application.Persistence.Migrations
 {
     [DbContext(typeof(SalonManagerDbContext))]
-    partial class SalonManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240213194920_AddCompanyColumn")]
+    partial class AddCompanyColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -312,17 +315,12 @@ namespace SalonManager.Application.Persistence.Migrations
             modelBuilder.Entity("SalonManager.Domain.Entities.User", b =>
                 {
                     b.HasOne("SalonManager.Domain.Entities.Company", "Company")
-                        .WithMany("Employees")
+                        .WithMany()
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("SalonManager.Domain.Entities.Company", b =>
-                {
-                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("SalonManager.Domain.Entities.Customer", b =>

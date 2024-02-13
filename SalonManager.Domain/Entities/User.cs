@@ -11,7 +11,7 @@ namespace SalonManager.Domain.Entities
 
         public Company? Company { get; set; }
         public int CompanyId { get; set; }
-
+        public bool CompanyAdministrator { get; set; }
         public EUserRole Role { get; set; }
 
         public string? Login { get; set; }
@@ -37,10 +37,10 @@ namespace SalonManager.Domain.Entities
 
     public record InputUserModel 
         (
-            string? Name, int CompanyId, EUserRole Role, string? Login, string? Email, string? Password
+            string? Name, EUserRole Role, string? Login, string? Email, string? Password
         );
     public record EditUserModel
         (
-            string? Name, string? CompanyName, string? Email, string? Password
+            string? Name, string? Email, string? Password
         );
 }

@@ -22,15 +22,15 @@ namespace SalonManager.Service.Services
         public async Task<User> GetByIdAsync(int id)
         {
             var user = await _repository.GetByIdAsync(id);
-            if (user != null) return user;
-            return null;
+            if (user is null) return null;
+            return user;
         }
 
         public async Task<User> GetByLoginAsync(string login)
         {
             var user = await _repository.GetByLoginAsync(login);
-            if (user != null) return user;
-            return null;
+            if (user is null) return null;
+            return user;
         }
 
         public async Task<User> InsertAsync(InputUserModel inputModel)
@@ -41,7 +41,6 @@ namespace SalonManager.Service.Services
             var user = new User
             {
                 Name = inputModel.Name,
-                CompanyId = inputModel.CompanyId,
                 Role = inputModel.Role,
                 Login = inputModel.Login,
                 Email = inputModel.Email,
@@ -67,7 +66,6 @@ namespace SalonManager.Service.Services
             if (userEdit is null) return null;
 
             userEdit.Name = editModel.Name;
-            userEdit.CompanyName = editModel.CompanyName;
             userEdit.Email = editModel.Email;
             userEdit.Password = editModel.Password;
 
