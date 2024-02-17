@@ -3,20 +3,12 @@ using SalonManager.Domain.Enums;
 
 namespace SalonManager.Domain.Entities
 {
-    public class User : BaseEntity
+    public class User : Person
     {
-        public string? Name { get; set; }
-        public DateTime BirthDate { get; set; }
-        public string? CPF { get; set; }
-
-        public Company? Company { get; set; }
-        public int CompanyId { get; set; }
-        public bool CompanyAdministrator { get; set; }
+        public string? Login { get; set; } //
+        public string? Email { get; set; } //
+        public string? Password { get; set; } //
         public EUserRole Role { get; set; }
-
-        public string? Login { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
 
         public bool ValidPassword(string password)
         {
@@ -37,7 +29,7 @@ namespace SalonManager.Domain.Entities
 
     public record InputUserModel 
         (
-            string? Name, EUserRole Role, string? Login, string? Email, string? Password
+            string? Name, string? CPF, string? Login, string? Email, string? Password, EUserRole Role, int CompanyId
         );
     public record EditUserModel
         (

@@ -17,6 +17,7 @@ namespace SalonManager.Infra.Data.Context
         public DbSet<SalonService> Services { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Company> Companies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

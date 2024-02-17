@@ -4,12 +4,12 @@
     {
         public string? Name { get; set; }
         public string? CNPJ { get; set; }
-        public List<User>? Employees { get; set; }
+        public List<Employee>? Employees { get; set; }
     }
 
     public record InputCompanyModel
     (
-    string? Name, string? CNPJ, string TenantId, int UserCreatorId
+    string? Name, string? CNPJ
     );
     public record EditCompanyModel
     (

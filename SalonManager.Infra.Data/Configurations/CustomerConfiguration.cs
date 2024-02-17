@@ -27,6 +27,8 @@ namespace SalonManager.Infra.Data.Configurations
             .HasColumnName("LastServiceDate")
             .HasColumnType("timestamp");
 
+            builder.Property(p => p.Times).HasColumnType("numeric");
+
             builder.Property(p => p.CreatedAt)
             .HasColumnName("CreatedAt")
             .HasColumnType("timestamp");

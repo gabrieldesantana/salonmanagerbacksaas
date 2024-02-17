@@ -1,11 +1,7 @@
-﻿using SalonManager.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Repository;
 using SalonManager.Infra.Data.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SalonManager.Infra.Data.Repository
 {
@@ -15,6 +11,13 @@ namespace SalonManager.Infra.Data.Repository
             : base(context, unitOfWork) 
         {
         
+        }
+
+        public override async Task<Company> GetByIdAsync(int id)
+        {
+            return await _context.Companies
+                .Include(x => x.Employees)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

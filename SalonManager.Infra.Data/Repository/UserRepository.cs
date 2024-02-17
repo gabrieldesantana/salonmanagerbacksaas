@@ -22,7 +22,9 @@ namespace SalonManager.Infra.Data.Repository
 
         public async Task<User> GetByLoginAsync(string login)
         {
-            return await _context.Users.FirstOrDefaultAsync((x => x.Login.ToLower() == login.ToLower()));
+            return await _context.Users
+                //.Include(x => x.Company)
+                .FirstOrDefaultAsync((x => x.Login.ToLower() == login.ToLower()));
         }
 
         public async Task<User> UpdateAsync(User user)

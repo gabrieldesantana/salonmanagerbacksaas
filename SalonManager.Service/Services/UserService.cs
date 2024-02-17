@@ -9,8 +9,10 @@ namespace SalonManager.Service.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _repository;
-        public UserService(IUserRepository repository) 
+        private readonly ICompanyRepository _companyRepository;
+        public UserService(IUserRepository repository, ICompanyRepository companyRepository) 
         {
+            _companyRepository = companyRepository;
             _repository = repository;
         }
 
@@ -29,25 +31,33 @@ namespace SalonManager.Service.Services
         public async Task<User> GetByLoginAsync(string login)
         {
             var user = await _repository.GetByLoginAsync(login);
+
+            //var company = await _employeeRepository.GetCompanyByUserId();
+
             if (user is null) return null;
             return user;
         }
 
         public async Task<User> InsertAsync(InputUserModel inputModel)
         {
-            var company = new Company();
-            // var company = "_companyRepository.GetByIdAsync(inputModel.CompanyId)";
+
+            var company = await _companyRepository.GetByIdAsync(inputModel.CompanyId);
+
+            if (company is null)
+                return null;
 
             var user = new User
             {
                 Name = inputModel.Name,
+                Cpf = inputModel.CPF,
                 Role = inputModel.Role,
                 Login = inputModel.Login,
                 Email = inputModel.Email,
-                TenantId = company.TenantId //add
+                TenantId = company.TenantId,
+                //Company = company,
+                // CompanyId = company.Id,
+                //CompanyAdministrator = inputModel.CompanyAdministrator
             };
-
-            user.SetCreatorId(); //linkando o id
 
             bool passwordOk = Regex.IsMatch(inputModel.Password, @"^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$");
 
@@ -56,7 +66,13 @@ namespace SalonManager.Service.Services
 
             user.SetPasswordHash(inputModel.Password);
 
-            return await _repository.InsertAsync(user);
+            var newUser = await _repository.InsertAsync(user);
+
+            newUser.SetCreatorId();
+
+            await _repository.UpdateAsync(newUser);
+
+            return newUser;
         }
 
         public async Task<User> UpdateAsync(int id, EditUserModel editModel)

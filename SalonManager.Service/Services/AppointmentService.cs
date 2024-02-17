@@ -55,14 +55,25 @@ public class AppointmentService : IAppointmentService
         return appointments;
     }
 
+    //public async Task<List<Appointment>> GetByCustomerIdAsync(int customerId)
+    //{
+    //    var appointments = await _repository.GetByCustomerIdAsync(customerId);
+
+    //    if (!appointments.Any()) return new List<Appointment>();
+
+    //    return appointments;
+    //}
+
     public async Task<FinanceAppointmentViewModel> GetFinishedByDateAsync(FinanceAppointmentModel financeModel)
     {
         var appointmentsFinished = await _repository.GetFinishedByDateAsync(financeModel);
 
-        if (!appointmentsFinished.Any())
-            return null;
+        //if (!appointmentsFinished.Any())
+        //    return ;
 
-        var totalValue = appointmentsFinished.Sum(x => x.Value);
+        appointmentsFinished ??= new();
+
+        var totalValue = appointmentsFinished.Sum(x => x.Cost);
 
         return new FinanceAppointmentViewModel
         (
@@ -81,18 +92,15 @@ public class AppointmentService : IAppointmentService
 
         var existingCustomer = await _customerRepository.GetByIdAsync(inputModel.CustomerAppointmentId);
         var existingService = await _serviceRepository.GetByIdAsync(inputModel.ServiceAppointmentId);
+        Employee existingEmployee = new(); //temp
 
         if (existingCustomer == null || existingService == null)
             return null;
 
-        var newAppointment = new Appointment
+        var newAppointment = new Appointment(existingCustomer, existingService, existingEmployee)
         {
             UserCreatorId = inputModel.UserCreatorId,
             TenantId = inputModel.TenantId.ToString(),
-            CustomerAppointment = existingCustomer,
-            ServiceAppointment = existingService,
-            CustomerAppointmentId = existingCustomer.Id,
-            ServiceAppointmentId = existingService.Id,
             Description = inputModel.Description,
             Date = DateTime.SpecifyKind(inputModel.Date, DateTimeKind.Unspecified)
         };
@@ -148,12 +156,12 @@ public class AppointmentService : IAppointmentService
         if (finishModel.PaymentMethod == "Pix" || finishModel.PaymentMethod == "Dinheiro")
             appointmentFinish.PaymentWay = "A Vista";
 
-        appointmentFinish.Value = finishModel.Value;
+        appointmentFinish.Cost = finishModel.Cost;
         appointmentFinish.Status = EAppointmentStatus.Finalizado;
         appointmentFinish.Finished = true;
         appointmentFinish.FinishedDate = DateTime.Now;
         appointmentFinish.CustomerAppointment.IncreaseTimes();
-        appointmentFinish.ServiceAppointment.Price = finishModel.Value;
+        appointmentFinish.ServiceAppointment.Price = finishModel.Cost;
         appointmentFinish.Description = finishModel.Description;
 
         appointmentFinish = await _repository.UpdateAsync(appointmentFinish, finishModel.TenantId);

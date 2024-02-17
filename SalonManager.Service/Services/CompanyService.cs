@@ -7,28 +7,22 @@ namespace SalonManager.Service.Services
     public class CompanyService : ICompanyService
     {
         private readonly ICompanyRepository _repository;
-        private const string tenantIdAdmin = "80719";
         public CompanyService(ICompanyRepository repository) 
         {
             _repository = repository;
         }
 
-        public async Task<List<Company>> GetAllAsync(string tenantId = "")
+        public async Task<List<Company>> GetAllAsync()
         {
-            var companies = await ((tenantId != tenantIdAdmin) 
-                ? _repository.GetAllAsync()
-                : _repository.GetAllByTenantIdAsync(tenantId));
-
+            var companies = await _repository.GetAllAsync();
             if (companies is null) return new List<Company>();
 
             return companies;
         }
 
-        public async Task<Company> GetByIdAsync(int id, string tenantId = "")
+        public async Task<Company> GetByIdAsync(int id)
         {
-            var company = await ((tenantId != tenantIdAdmin) 
-                ? _repository.GetByIdAsync(id) 
-                : _repository.GetByIdByTenantIdAsync(id, tenantId));
+            var company = await _repository.GetByIdAsync(id);
 
             if (company is null) return null;
             return company;
@@ -40,8 +34,8 @@ namespace SalonManager.Service.Services
             var company = new Company
             {
                 Name = inputModel.Name,
-                TenantId = inputModel.TenantId,
-                UserCreatorId = inputModel.UserCreatorId
+                CNPJ = inputModel.CNPJ,
+                TenantId = Guid.NewGuid().ToString()
             };
 
             return await _repository.InsertAsync(company);

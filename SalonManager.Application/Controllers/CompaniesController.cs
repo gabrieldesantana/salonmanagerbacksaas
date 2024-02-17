@@ -20,13 +20,13 @@ public class CompaniesController : ControllerBase
     // GET api/[controller]
     [ProducesResponseType((200), Type = typeof(List<Company>))]
     [ProducesResponseType((400))]
-    [HttpGet("{tenantId}")]
-    public async Task<IActionResult> GetAllAsync(string? tenantId = "")
+    [HttpGet("")]
+    public async Task<IActionResult> GetAllAsync()
     {
         try
         {
             Log.Information("#### Obtendo todas as empresas ####");
-            var companies = await _service.GetAllAsync(tenantId);
+            var companies = await _service.GetAllAsync();
             return Ok(companies);
         }
         catch (Exception exception)
@@ -41,14 +41,14 @@ public class CompaniesController : ControllerBase
     [ProducesResponseType((200), Type = typeof(Company))]
     [ProducesResponseType((400))]
     [ProducesResponseType((404))]
-    [HttpGet("{tenantId}/{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id, string? tenantId = "")
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetByIdAsync(int id)
     {
         try
         {
             Log.Information($"#### Obtendo a empresa de ID: {id} ####");
 
-            var company = await _service.GetByIdAsync(id, tenantId);
+            var company = await _service.GetByIdAsync(id);
 
             if (company is null)
             {
@@ -82,9 +82,9 @@ public class CompaniesController : ControllerBase
                 return BadRequest();
             }
 
-            var user = await _service.InsertAsync(inputModel);
+            var company = await _service.InsertAsync(inputModel);
 
-            if (user is null)
+            if (company is null)
                 return BadRequest();
 
             return Ok(inputModel);

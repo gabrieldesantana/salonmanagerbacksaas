@@ -4,11 +4,11 @@ using SalonManager.Domain.Entities;
 
 namespace SalonManager.Infra.Data.Configurations
 {
-    public class UserConfiguration : IEntityTypeConfiguration<User>
+    public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
-        public void Configure(EntityTypeBuilder<User> builder)
+        public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.ToTable("Users");
+            builder.ToTable("Employees");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Cpf).HasColumnType("varchar(14)").IsRequired();
             builder.Property(p => p.Name).HasColumnType("varchar(80)").IsRequired();
@@ -20,15 +20,17 @@ namespace SalonManager.Infra.Data.Configurations
             .HasColumnName("BirthDate")
             .HasColumnType("timestamp");
 
-            builder.Property(p => p.Login).HasColumnType("varchar(20)").IsRequired();
-            builder.Property(p => p.Email).HasColumnType("varchar(80)").IsRequired();
-            builder.Property(p => p.Password).IsRequired();
+            builder.Property(e => e.UserId)
+            .HasColumnName("UserId")
+            .HasColumnType("int");
 
-            builder.Property(p => p.Role).HasConversion<string>();
+            builder.Property(e => e.CompanyId)
+            .HasColumnName("CompanyId")
+            .HasColumnType("int");
 
-            builder.Property(p => p.CreatedAt)
-            .HasColumnName("CreatedAt")
-            .HasColumnType("timestamp");
+            builder.HasMany(c => c.Appointments)
+            .WithOne(a => a.EmployeeAppointment)
+            .HasForeignKey(a => a.EmployeeAppointmentId);
         }
 
     }

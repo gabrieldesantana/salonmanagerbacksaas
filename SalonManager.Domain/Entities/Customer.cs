@@ -1,19 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿namespace SalonManager.Domain.Entities;
 
-namespace SalonManager.Domain.Entities;
-
-public class Customer : BaseEntity
+public class Customer : Person
 {
-    public string? Cpf { get; set; }
-    public string? Name { get; set; }
-    public string? Nickname { get; set; }
-    public string? Gender { get; set; }
-    public DateTime BirthDate { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? LastService { get; set; }
-    public DateTime LastServiceDate { get; set; }
-    public int Times { get; set; }
-    public List<Appointment> Appointments { get; set; }
+    public string? LastService { get; set; } //
+    public DateTime LastServiceDate { get; set; } //
+    public int Times { get; set; } //
+    public List<Appointment>? Appointments { get; set; }
 
     public void IncreaseTimes()
     {

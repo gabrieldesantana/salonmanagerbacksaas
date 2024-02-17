@@ -2,7 +2,6 @@
 using SalonManager.Domain.Entities;
 using SalonManager.Domain.Interfaces.Services;
 using Serilog;
-using System;
 
 
 namespace SalonManager.Application.Controllers;
@@ -10,25 +9,25 @@ namespace SalonManager.Application.Controllers;
 [ApiController]
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class UsersController : ControllerBase
+public class EmployeesController : ControllerBase
 {
-    private readonly IUserService _service;
-    public UsersController(IUserService service)
+    private readonly ICompanyService _service;
+    public EmployeesController(ICompanyService service)
     {
         _service = service;
     }
 
     // GET api/[controller]
-    [ProducesResponseType((200), Type = typeof(List<User>))]
+    [ProducesResponseType((200), Type = typeof(List<Employee>))]
     [ProducesResponseType((400))]
     [HttpGet("")]
-    public async Task<IActionResult> GetAllAsync() 
+    public async Task<IActionResult> GetAllAsync()
     {
         try
         {
-            Log.Information("#### Obtendo todos os usuarios ####");
-            var users = await _service.GetAllAsync();
-            return Ok(users);
+            Log.Information("#### Obtendo todas as empresas ####");
+            var companies = await _service.GetAllAsync();
+            return Ok(companies);
         }
         catch (Exception exception)
         {
@@ -39,53 +38,25 @@ public class UsersController : ControllerBase
 
 
     // GET api/[controller]/{id}
-    [ProducesResponseType((200), Type = typeof(User))]
+    [ProducesResponseType((200), Type = typeof(Employee))]
     [ProducesResponseType((400))]
     [ProducesResponseType((404))]
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(int id) 
+    public async Task<IActionResult> GetByIdAsync(int id)
     {
         try
         {
-            Log.Information($"#### Obtendo o usuario de ID: {id} ####");
+            Log.Information($"#### Obtendo a empresa de ID: {id} ####");
 
-            var user = await _service.GetByIdAsync(id);
+            var company = await _service.GetByIdAsync(id);
 
-            if (user is null)
+            if (company is null)
             {
-                Log.Error($"**** Não foi possível localizar o registro useriro de ID: {id} ");
+                Log.Error($"**** Não foi possível localizar o registro empresa de ID: {id} ");
                 return NotFound();
             }
 
-            return Ok(user);
-        }
-        catch (Exception exception)
-        {
-            Log.Error($"**** {exception.Message}");
-            return StatusCode(400, exception.Message);
-        }
-    }
-
-    // GET api/[controller]/{login}
-    [ProducesResponseType((200), Type = typeof(User))]
-    [ProducesResponseType((400))]
-    [ProducesResponseType((404))]
-    [HttpGet("getLogin/{login}")]
-    public async Task<IActionResult> GetByLoginAsync(string login)
-    {
-        try
-        {
-            Log.Information($"#### Obtendo o usuario de Login: {login} ####");
-
-            var user = await _service.GetByLoginAsync(login);
-
-            if (user is null)
-            {
-                Log.Error($"**** Não foi possível localizar o usuario de Login: {login} ");
-                return NotFound();
-            }
-
-            return Ok(user);
+            return Ok(company);
         }
         catch (Exception exception)
         {
@@ -96,14 +67,14 @@ public class UsersController : ControllerBase
 
 
     // POST api/[controller]
-    [ProducesResponseType((200), Type = typeof(User))]
+    [ProducesResponseType((200), Type = typeof(Employee))]
     [ProducesResponseType((400))]
     [HttpPost("")]
-    public async Task<IActionResult> PostAsync(InputUserModel inputModel)
+    public async Task<IActionResult> PostAsync(InputCompanyModel inputModel)
     {
         try
         {
-            Log.Information($"#### Inserindo um novo usuario ####");
+            Log.Information($"#### Inserindo uma nova empresa ####");
 
             if (inputModel is null)
             {
@@ -111,12 +82,10 @@ public class UsersController : ControllerBase
                 return BadRequest();
             }
 
-            var user = await _service.InsertAsync(inputModel);
+            var company = await _service.InsertAsync(inputModel);
 
-            if (user is null)
+            if (company is null)
                 return BadRequest();
-
-                //return BadRequest("A senha deve conter pelo menos 8 caracteres, incluindo pelo menos um dígito, uma letra minúscula e uma letra maiúscula.");
 
             return Ok(inputModel);
         }
@@ -129,14 +98,14 @@ public class UsersController : ControllerBase
 
 
     // PUT api/[controller]
-    [ProducesResponseType((204), Type = typeof(User))]
+    [ProducesResponseType((204), Type = typeof(Employee))]
     [ProducesResponseType((400))]
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutAsync(int id, EditUserModel editModel) 
+    public async Task<IActionResult> PutAsync(int id, EditCompanyModel editModel)
     {
         try
         {
-            Log.Information($"#### Atualizando o usuario de ID = {id} ####");
+            Log.Information($"#### Atualizando a empresa de ID = {id} ####");
 
             if (editModel is null)
             {
@@ -166,11 +135,11 @@ public class UsersController : ControllerBase
     [ProducesResponseType((204))]
     [ProducesResponseType((400))]
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteAsync(int id) 
+    public async Task<IActionResult> DeleteAsync(int id)
     {
         try
         {
-            Log.Information($"#### Excluindo o usuario de ID = {id} ####");
+            Log.Information($"#### Excluindo a empresa de ID = {id} ####");
 
             var wasDelete = await _service.DeleteAsync(id);
 

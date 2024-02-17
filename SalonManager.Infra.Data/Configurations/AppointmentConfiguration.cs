@@ -20,6 +20,10 @@ namespace SalonManager.Infra.Data.Configurations
             .HasColumnName("ServiceAppointmentId")
             .HasColumnType("int");
 
+            builder.Property(e => e.EmployeeAppointmentId)
+                .HasColumnName("EmployeeId")
+                .HasColumnType("int");
+
 
             builder.Property(p => p.Date)
             .HasColumnName("Date")
@@ -40,7 +44,7 @@ namespace SalonManager.Infra.Data.Configurations
             builder.Property(p => p.PaymentWay).HasColumnType("varchar(50)");
             builder.Property(p => p.PaymentMethod).HasColumnType("varchar(50)");
 
-            builder.Property(p => p.Value).HasColumnType("numeric");
+            builder.Property(p => p.Cost).HasColumnType("numeric");
 
             builder.Property(p => p.Finished)
                 .HasDefaultValue(false)
